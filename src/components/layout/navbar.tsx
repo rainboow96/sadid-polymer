@@ -59,9 +59,9 @@ export default function Navbar() {
             <Image
               src="/logo-sadid.svg"
               alt="سدید پلیمر"
-              width={140}
-              height={40}
-              className="w-36 h-auto object-contain"
+              width={130}
+              height={36}
+              className="w-28 sm:w-36 h-auto object-contain"
               priority
             />
           </Link>
