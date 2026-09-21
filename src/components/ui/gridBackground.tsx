@@ -20,7 +20,6 @@ export default function GridBackground({
       className={`relative w-full overflow-hidden ${className}`}
       {...props}
     >
-      {/* لایه شبکه شطرنجی */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -36,7 +35,6 @@ export default function GridBackground({
         }}
       />
 
-      {/* محتوای داخل هیرو */}
       {children && <div className="relative z-10 w-full">{children}</div>}
     </div>
   );

@@ -33,10 +33,8 @@ export default function Hero() {
       <section id="top" dir="rtl" className="relative flex min-h-[calc(100svh-120px)] w-full items-center overflow-hidden pt-[120px] lg:pt-[140px]">
         <div className="relative mx-auto grid min-h-[calc(100svh-144px)] w-full max-w-[1600px] grid-cols-1 items-center gap-8 px-5 py-10 sm:gap-10 sm:px-8 lg:grid-cols-2 lg:gap-0 lg:px-10 lg:py-0 xl:px-16">
 
-          {/* ستون راست: متن، دکمه‌ها و آمار */}
           <div className="relative z-10 flex min-w-0 w-full flex-col items-center text-center lg:col-start-1 lg:items-start lg:text-right">
 
-            {/* عنوان و توضیحات */}
             <div className="w-full max-w-[570px]">
               <FadeIn delay={0.15}>
                 <h1 className="text-[32px] font-black leading-[1.35] tracking-tight text-gradient sm:text-4xl lg:text-[42px] xl:text-5xl xl:leading-[1.3]">
@@ -53,7 +51,6 @@ export default function Hero() {
               </FadeIn>
             </div>
 
-            {/* دکمه‌ها */}
             <FadeIn delay={0.45} className="mt-6 flex w-full flex-wrap items-center justify-center gap-4 lg:justify-start">
               <Button
                 nativeButton={false}
@@ -79,7 +76,6 @@ export default function Hero() {
 
             </FadeIn>
 
-            {/* کارت‌های آماری */}
             <FadeIn delay={0.6} className="mt-7 w-full max-w-[460px] sm:max-w-[500px]">
               <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
                 {stats.map((s) => (
@@ -89,7 +85,6 @@ export default function Hero() {
             </FadeIn>
           </div>
 
-          {/* ستون چپ: تصویر هیرو */}
           <div className="relative z-10 flex min-w-0 w-full items-center justify-center lg:col-start-2 lg:row-start-1">
             <FadeIn delay={0.25} className="w-full">
               <div dir="ltr" className="relative flex w-full items-center justify-center max-w-xl mx-auto lg:translate-x-10 xl:translate-x-16">
@@ -101,7 +96,6 @@ export default function Hero() {
                   height={2080}
                   priority
                   sizes="(max-width: 1023px) 100vw, 50vw"
-                  /* مقادیر scale در اینجا تغییر کرده است */
                   className="block h-auto w-full max-w-none object-contain drop-shadow-[0_20px_50px_rgba(0,180,255,0.18)] lg:scale-[1.15] xl:scale-[1.25]"
                 />
 
@@ -110,7 +104,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* سایه پایین هیرو */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#060d1d] to-transparent" />
       </section>
     </GridBackground>

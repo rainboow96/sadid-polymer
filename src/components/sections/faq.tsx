@@ -13,10 +13,9 @@ import { FAQS } from "../data/content";
 
 export default function FAQ() {
     return (
-        <section className="relative py-24">
+        <section className="relative py-15">
             <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2">
 
-                {/* ستون راست: تیتر و کارت تماس */}
                 <div>
                     <Reveal>
                         <SectionHead
@@ -49,7 +48,6 @@ export default function FAQ() {
                     </Reveal>
                 </div>
 
-                {/* ستون چپ: لیست آکاردئون پرسش و پاسخ */}
                 <div className="space-y-4">
                     <Accordion defaultValue={["item-0"]} className="gap-4">
                         {FAQS.map((faq, index) => (
@@ -59,12 +57,10 @@ export default function FAQ() {
                                     className="rounded-2xl border border-slate-800 bg-slate-900/40 px-5 py-1 transition-colors data-open:border-[#00e0ff]/50"
                                 >
                                     <AccordionTrigger className="group/accordion-trigger flex flex-row-reverse gap-4 py-5 text-right font-bold text-white hover:no-underline [&>svg]:hidden">
-                                        {/* آیکون مثبت که در سمت چپ قرار می‌گیرد */}
                                         <span className="grid size-9 shrink-0 place-items-center rounded-full border border-[#00e0ff]/30 text-[#00e0ff] transition-transform duration-300 group-aria-expanded/accordion-trigger:rotate-45">
                                             <Plus className="size-5" />
                                         </span>
 
-                                        {/* متن سوال */}
                                         <span className="flex-1">{faq.q}</span>
                                     </AccordionTrigger>
 

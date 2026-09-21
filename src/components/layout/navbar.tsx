@@ -115,14 +115,15 @@ export default function Navbar() {
 
           <Button
             nativeButton={false}
-            render={<Link href="/quote" />}
+            render={<Link href="/contact" />}
             className="bg-[image:var(--background-image-brand-blue-gradient)] text-white shadow-md shadow-cyan-500/20 hover:opacity-90 transition-opacity font-semibold"
           >
             استعلام قیمت
           </Button>
         </div>
-
-        <MobileMenu navLinks={navLinks} />
+        <div className="flex items-center md:hidden">
+          <MobileMenu navLinks={navLinks} />
+        </div>
       </div>
     </header>
   );

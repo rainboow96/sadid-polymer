@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+
+import "./globals.css";
+
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
-
-
+import SmoothScroll from "@/components/ui/SmoothScroll";
 
 const vazir = localFont({
   src: [
@@ -44,22 +45,35 @@ export const metadata: Metadata = {
     "سدید پلیمر",
     "تولیدکننده شیلنگ",
   ],
-    icons: {
-    icon: "/favicon.png", 
+  icons: {
+    icon: "/favicon.png",
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+type RootLayoutProps = Readonly<{
+  children: React.ReactNode;
+}>;
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
-      lang="fa" dir="rtl"
+      lang="fa"
+      dir="rtl"
       className={cn("font-sans", vazir.variable)}
     >
-      <body className="min-h-full flex flex-col">
-        <Navbar/>
-        {children}
-        <Footer/>
-        </body>
+      <body className="flex min-h-screen w-full flex-col overflow-x-clip">
+        <SmoothScroll>
+          <Navbar />
+          <main className="min-w-0 flex-1">{children}</main>
+          <Footer />
+        </SmoothScroll>
+      </body>
     </html>
   );
 }
+

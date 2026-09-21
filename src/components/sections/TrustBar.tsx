@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { BadgeCheck, Award, Leaf, Factory, Truck, Headset,Tags} from "lucide-react";
+import { BadgeCheck, Award, Leaf, Factory, Truck, Headset, Tags } from "lucide-react";
+import { useIntersectionObserver } from "../../app/hooks/useIntersectionObserver";
 
 const ITEMS = [
   { icon: Factory, text: "تولید ملی با مواد درجه‌یک" },
@@ -11,27 +11,12 @@ const ITEMS = [
   { icon: Truck, text: "ارسال سراسری به سراسر کشور" },
   { icon: Headset, text: "مشاوره فنی رایگان" },
   { icon: Tags, text: "قیمت رقابتی مستقیم از کارخانه" },
-
 ];
 
 export default function TrustBar() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin: "100px" } 
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const { containerRef, isVisible } = useIntersectionObserver({
+    rootMargin: "100px",
+  });
 
   return (
     <div
@@ -39,7 +24,6 @@ export default function TrustBar() {
       className="relative border-y border-white/[0.07] bg-[#060d1a]/80 p-5 backdrop-blur-xl select-none mt-5"
       dir="ltr"
     >
-
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 sm:w-32 bg-gradient-to-r from-[#060d1a] to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 sm:w-32 bg-gradient-to-l from-[#060d1a] to-transparent" />
 

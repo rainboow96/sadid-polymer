@@ -6,11 +6,9 @@ import { Clock3, Calendar, Info, CheckCircle2, ChevronLeft } from "lucide-react"
 import Reveal from "@/components/ui/reveal";
 import Breadcrumb from "@/components/ui/breadcrumb";
 
-
 import { 
     articles, 
     getArticleBySlug, 
-    ArticleContent, 
     ArticleSection, 
     ArticlePoint,
     ComparisonRow
@@ -19,7 +17,6 @@ import {
 type ArticlePageProps = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-
     return articles.map((article) => ({ slug: article.slug }));
 }
 
@@ -42,25 +39,28 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
     if (!article) notFound();
 
     return (
-        <article className="py-16 sm:py-35">
-            <div className="mx-auto max-w-4xl px-5">
-                <Breadcrumb
-                    items={[
-                        { label: "صفحه اصلی", href: "/" },
-                        { label: "وبلاگ", href: "/blog" },
-                        { label: article.title },
-                    ]}
-                />
+        <article className="pt-34 pb-16">
+            <div className="mx-auto max-w-5xl px-5 sm:px-8">
+                
+                <div className="mb-8">
+                    <Breadcrumb
+                        items={[
+                            { label: "صفحه اصلی", href: "/" },
+                            { label: "وبلاگ", href: "/blog" },
+                            { label: article.title },
+                        ]}
+                    />
+                </div>
 
                 <Reveal>
-                    <div className="mb-10 text-center sm:text-right">
+                    <header className="mb-10 text-center sm:text-right">
                         <h1 className="text-2xl sm:text-4xl font-black text-white leading-tight">{article.title}</h1>
                         <p className="mt-3 text-sm sm:text-base text-cyan-300/80 leading-7">{article.subtitle}</p>
                         <div className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-5 text-xs text-slate-400">
                             <span className="flex items-center gap-1.5"><Clock3 className="size-4 text-cyan-400" />{article.readingTime}</span>
                             <span className="flex items-center gap-1.5"><Calendar className="size-4 text-cyan-400" />{article.publishedAt}</span>
                         </div>
-                    </div>
+                    </header>
                 </Reveal>
 
                 <Reveal delay={0.1}>
@@ -71,7 +71,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                             fill
                             priority
                             className="object-cover"
-                            sizes="(max-width: 1024px) 100vw, 896px"
+                            sizes="(max-width: 1024px) 100vw, 1024px"
                         />
                     </div>
                 </Reveal>
@@ -118,6 +118,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                         </section>
                     ))}
 
+
                     {article.comparisonTable && (
                         <section className="space-y-4 pt-6">
                             <h2 className="text-lg sm:text-2xl font-bold text-white border-r-4 border-cyan-400 pr-3">
@@ -125,21 +126,21 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                             </h2>
                             <div className="overflow-x-auto rounded-3xl border border-white/10 bg-slate-900/60">
                                 <table className="w-full text-right text-xs sm:text-sm">
-                                    <thead className="bg-slate-950/80 text-cyan-300 border-b border-white/10">
+                                    <thead className="bg-slate-950/80 text-cyan-300 ">
                                         <tr>
-                                            <th className="p-4">{article.comparisonTable.headers.feature}</th>
-                                            <th className="p-4 text-cyan-200">{article.comparisonTable.headers.ldpe}</th>
-                                            <th className="p-4">{article.comparisonTable.headers.hdpe}</th>
-                                            <th className="p-4">{article.comparisonTable.headers.pvc}</th>
+                                            <th className="p-4 whitespace-nowrap">{article.comparisonTable.headers.feature}</th>
+                                            <th className="p-4 text-cyan-200 whitespace-nowrap">{article.comparisonTable.headers.ldpe}</th>
+                                            <th className="p-4 whitespace-nowrap">{article.comparisonTable.headers.hdpe}</th>
+                                            <th className="p-4 whitespace-nowrap">{article.comparisonTable.headers.pvc}</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-white/10 text-slate-300">
                                         {article.comparisonTable.rows.map((row: ComparisonRow, i: number) => (
                                             <tr key={i} className="hover:bg-white/[0.02]">
                                                 <td className="p-4 font-semibold text-white whitespace-nowrap">{row.feature}</td>
-                                                <td className="p-4 text-cyan-300/90 font-medium bg-cyan-950/10">{row.ldpe}</td>
-                                                <td className="p-4">{row.hdpe}</td>
-                                                <td className="p-4">{row.pvc}</td>
+                                                <td className="p-4 text-cyan-300/90 font-medium bg-cyan-950/10 whitespace-nowrap">{row.ldpe}</td>
+                                                <td className="p-4 whitespace-nowrap">{row.hdpe}</td>
+                                                <td className="p-4 whitespace-nowrap">{row.pvc}</td>
                                             </tr>
                                         ))}
                                     </tbody>

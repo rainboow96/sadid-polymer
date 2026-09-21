@@ -52,7 +52,7 @@ export default function BlogPage() {
                         {allArticles.map((a, index) => (
                             <Reveal key={a.slug} delay={index * 0.1}>
                                 <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-900/50 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-400/40 hover:bg-slate-900/80 hover:shadow-[0_12px_25px_-8px_rgba(6,182,212,0.25)]">
-                                    {/* بخش تصویر با لینک و لایه افکت */}
+
                                     <Link
                                         href={`/blog/${a.slug}`}
                                         className="relative aspect-[16/9] w-full block overflow-hidden bg-slate-950"

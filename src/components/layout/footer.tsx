@@ -24,13 +24,12 @@ const navLinks: NavLink[] = [
   { title: "تماس با ما", href: "#contact" },
 ];
 
+
 const products = [
-  "لی‌فلت ۲ اینچ",
-  "لی‌فلت ۳ اینچ",
-  "لی‌فلت ۴ اینچ",
-  "لی‌فلت ۵ و ۶ اینچ",
-  "کیسه کاشت نهال",
+  { name: " لوله لی فلت", href: "/products/layflat" },
+  { name: "کیسه کاشت نهال", href: "/products/bags" },
 ];
+
 function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -80,8 +79,7 @@ export default function Footer() {
     >
 
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-[#00e0ff]/50 to-transparent" />
-
-      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+      <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8"> 
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
 
           <div>
@@ -124,8 +122,7 @@ export default function Footer() {
             <p className="text-[14px] font-extrabold text-white">
               دسترسی سریع
             </p>
-
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-4 space-y-2"> 
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -143,15 +140,15 @@ export default function Footer() {
           <nav aria-label="محصولات">
             <p className="text-[14px] font-extrabold text-white">محصولات</p>
 
-            <ul className="mt-4 space-y-2.5 text-[13.5px] font-medium text-slate-400">
+            <ul className="mt-4 space-y-2 text-[13.5px] font-medium text-slate-400">
               {products.map((product) => (
-                <li key={product}>
-                  <a
-                    href="#products"
+                <li key={product.href}>
+                  <Link
+                    href={product.href}
                     className="transition hover:text-[#7df9ff]"
                   >
-                    {product}
-                  </a>
+                    {product.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -162,7 +159,7 @@ export default function Footer() {
               ارتباط با ما
             </p>
 
-            <ul className="mt-4 space-y-3 text-[13px] font-medium text-slate-400">
+            <ul className="mt-4 space-y-2.5 text-[13px] font-medium text-slate-400">
               {phoneChannel && (
                 <li className="flex items-start gap-2.5">
                   <PhoneCall className="mt-0.5 h-4 w-4 shrink-0 text-[#00e0ff]" />

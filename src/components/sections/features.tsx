@@ -37,11 +37,9 @@ const features = [
 export default function Features() {
   return (
     <section id="why-sadid" className="relative py-10 sm:py-15">
-      {/* هاله پس‌زمینه */}
       <div className="absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-electric-600/[0.07] blur-[120px]" />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        {/* تیتر و توضیحات بخش با انیمیشن FadeIn */}
         <FadeIn className="mx-auto max-w-2xl text-center">
           <h2 className="mt-4 text-3xl font-black leading-snug text-white sm:text-[42px]">
             مهندسی‌شده برای <span className="text-gradient">دوام و بازده</span>
@@ -51,18 +49,15 @@ export default function Features() {
           </p>
         </FadeIn>
 
-        {/* کارت‌های ویژگی‌ها با Stagger مرتب */}
         <FadeIn >
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
             {features.map((f, i) => (
               <FadeIn key={f.title} delay={i * 0.12} className="h-full">
                 <StatCard icon={f.icon}>
-                  {/* تبدیل خودکار عدد 40 به ۴۰ */}
                   <h3 className="mt-4 text-lg font-extrabold text-white">
                     {toPersianDigits(f.title)}
                   </h3>
 
-                  {/* تبدیل خودکار اعداد 100 و 14 و 10 به ۱۰۰ و ۱۴ و ۱۰ */}
                   <p className="mt-2 text-[13.5px] leading-7 text-slate-400">
                     {toPersianDigits(f.desc)}
                   </p>

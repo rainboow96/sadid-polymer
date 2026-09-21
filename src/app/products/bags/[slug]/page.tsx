@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { PhoneCall, CheckCircle2, ChevronLeft } from "lucide-react";
 import { products } from "@/components/data/products";
 import { Button } from "@/components/ui/button";
@@ -44,16 +43,16 @@ export default async function LayflatProductDetailPage({ params }: Props) {
   const breadcrumbItems = [
     { label: "صفحه اصلی", href: "/" },
     { label: "لوله‌های لی‌فلت", href: "/products/layflat" },
-    { label: product.name }, 
+    { label: product.name },
   ];
 
   return (
     <main className="min-h-screen text-white pt-34 pb-16">
       <div className="container mx-auto px-4 max-w-6xl">
-        
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-white/5">
+
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 ">
           <Breadcrumb items={breadcrumbItems} />
-          
+
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -94,15 +93,19 @@ export default async function LayflatProductDetailPage({ params }: Props) {
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium hover:from-cyan-400 hover:to-blue-500 gap-2 shadow-[0_0_25px_rgba(6,182,212,0.3)]"
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_25px_rgba(6,182,212,0.3)] transition-all p-0"
                 render={
-                  <a href="tel:09372796015">
-                    <PhoneCall className="size-4" />
-                    استعلام قیمت و مشاوره تلفنی
+                  <a
+                    href="tel:09372796015"
+                    className="w-full h-full px-6 py-3 flex items-center justify-center gap-2"
+                  >
+                    <PhoneCall className="size-4 shrink-0" />
+                    <span>استعلام قیمت و مشاوره تلفنی</span>
                   </a>
                 }
               />
             </div>
+
           </div>
         </div>
       </div>
