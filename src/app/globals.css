@@ -43,6 +43,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: auto;
   scrollbar-color: #38bdf8 #090d16;
+  overflow-x: hidden;
 }
 
 body {
@@ -50,5 +51,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
 }
-

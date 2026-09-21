@@ -50,8 +50,8 @@ const navItemStyles = `
 
 export default function Navbar() {
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 px-4">
-      <div className="w-full max-w-7xl mx-auto flex items-center justify-between rounded-2xl bg-[#0e1626]/60 backdrop-blur-md border border-white/10 shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] px-6 py-2.5">
+    <header className="fixed top-4 inset-x-0 z-50 px-3 sm:px-4 max-w-full">
+      <div className="w-full max-w-7xl mx-auto flex items-center justify-between rounded-2xl bg-[#0e1626]/80 backdrop-blur-md border border-white/10 shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] px-4 sm:px-6 py-2.5">
 
 
         <div className="flex items-center">
