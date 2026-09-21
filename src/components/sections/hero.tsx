@@ -30,7 +30,7 @@ const stats = [
 export default function Hero() {
   return (
     <GridBackground gridSize={70}>
-      <section id="top" dir="rtl" className="relative flex min-h-[calc(100svh-120px)] w-full items-center overflow-hidden pt-[120px] lg:pt-[140px]">
+      <section id="top" dir="rtl" className="relative flex min-h-[calc(100svh-120px)] w-full items-center overflow-hidden pt-[100px] lg:pt-[140px]">
         <div className="relative mx-auto grid min-h-[calc(100svh-144px)] w-full max-w-[1600px] grid-cols-1 items-center gap-8 px-5 py-10 sm:gap-10 sm:px-8 lg:grid-cols-2 lg:gap-0 lg:px-10 lg:py-0 xl:px-16">
 
           <div className="relative z-10 flex min-w-0 w-full flex-col items-center text-center lg:col-start-1 lg:items-start lg:text-right">

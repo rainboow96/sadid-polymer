@@ -133,7 +133,7 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
 
         <div className="p-4 border-t border-white/10 bg-[#070c16]">
           <Link
-            href="/quote"
+            href="/contact"
             onClick={closeMenu}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3 text-base font-semibold text-white shadow-lg shadow-cyan-500/25"
           >

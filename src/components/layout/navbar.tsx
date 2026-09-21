@@ -35,7 +35,6 @@ const navLinks: NavLink[] = [
   { title: "تماس با ما", href: "/contact" },
 ];
 
-
 const navItemStyles = `
   relative py-2 px-3 text-slate-300 font-medium text-sm transition-colors duration-200
   hover:text-white bg-transparent hover:bg-transparent focus:bg-transparent
@@ -50,18 +49,17 @@ const navItemStyles = `
 
 export default function Navbar() {
   return (
-    <header className="fixed top-4 inset-x-0 z-50 px-3 sm:px-4 max-w-full">
-      <div className="w-full max-w-7xl mx-auto flex items-center justify-between rounded-2xl bg-[#0e1626]/80 backdrop-blur-md border border-white/10 shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] px-4 sm:px-6 py-2.5">
+    <header className="fixed top-4 inset-x-0 z-50 px-3 sm:px-4 max-w-full pointer-events-none">
+      <div className="pointer-events-auto w-full max-w-7xl mx-auto flex items-center justify-between rounded-2xl bg-[#0e1626]/40 backdrop-blur-xl backdrop-saturate-150  shadow-[0_8px_32px_0_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.1)] px-4 sm:px-6 py-2.5 transition-all">
 
-
-        <div className="flex items-center">
+        <div className="flex items-center shrink-0">
           <Link href="/" className="inline-block hover:opacity-85 transition-opacity">
             <Image
               src="/logo-sadid.svg"
               alt="سدید پلیمر"
               width={130}
               height={36}
-              className="w-28 sm:w-36 h-auto object-contain"
+              className="w-28 sm:w-36 h-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
               priority
             />
           </Link>
@@ -78,12 +76,12 @@ export default function Navbar() {
                         {link.title}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className="w-48 p-2 bg-[#0e1626]/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl">
+                        <ul className="w-48 p-2 bg-[#0e1626]/80 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl">
                           {link.items.map((item) => (
                             <li key={item.href}>
                               <Link
                                 href={item.href}
-                                className="block px-3 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 rounded-lg text-sm text-slate-300 transition-all"
+                                className="block px-3 py-2 hover:bg-cyan-500/15 hover:text-cyan-300 rounded-lg text-sm text-slate-300 transition-all"
                               >
                                 {item.title}
                               </Link>
@@ -116,12 +114,13 @@ export default function Navbar() {
           <Button
             nativeButton={false}
             render={<Link href="/contact" />}
-            className="bg-[image:var(--background-image-brand-blue-gradient)] text-white shadow-md shadow-cyan-500/20 hover:opacity-90 transition-opacity font-semibold"
+            className="bg-[image:var(--background-image-brand-blue-gradient)] text-white shadow-md shadow-cyan-500/20 hover:opacity-90 transition-opacity font-semibold backdrop-blur-sm"
           >
             استعلام قیمت
           </Button>
         </div>
-        <div className="flex items-center md:hidden">
+
+        <div className="flex items-center md:hidden shrink-0">
           <MobileMenu navLinks={navLinks} />
         </div>
       </div>

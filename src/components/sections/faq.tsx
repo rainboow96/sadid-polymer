@@ -10,6 +10,8 @@ import { Plus, MessageCircleQuestion, Phone } from "lucide-react";
 import Reveal from "../ui/reveal";
 import SectionHead from "./sectionHead";
 import { FAQS } from "../data/content";
+import Link from "next/link";
+
 
 export default function FAQ() {
     return (
@@ -36,16 +38,17 @@ export default function FAQ() {
                                 <p className="mt-1 text-sm text-slate-400">
                                     کارشناسان فنی ما آماده مشاوره رایگان هستند.
                                 </p>
-                                <a
-                                    href="tel:02112345678"
+                                <Link
+                                    href="/contact"
                                     className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-[#00e0ff] hover:underline"
                                 >
                                     <Phone className="size-4" />
                                     تماس مستقیم با واحد فروش
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </Reveal>
+
                 </div>
 
                 <div className="space-y-4">

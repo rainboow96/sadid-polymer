@@ -96,7 +96,7 @@ export default async function LayflatProductDetailPage({ params }: Props) {
                 className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_25px_rgba(6,182,212,0.3)] transition-all p-0"
                 render={
                   <a
-                    href="tel:09372796015"
+                    href="tel:09372296015"
                     className="w-full h-full px-6 py-3 flex items-center justify-center gap-2"
                   >
                     <PhoneCall className="size-4 shrink-0" />
