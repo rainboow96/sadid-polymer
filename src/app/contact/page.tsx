@@ -268,9 +268,7 @@ export default function ContactPage() {
 
                 <div className="mt-6 flex items-center gap-2 rounded-xl bg-cyan-500/10 border border-cyan-500/20 p-3 text-xs text-cyan-300">
                   <ShieldCheck className="size-5 shrink-0 text-cyan-400" />
-                  <span>
-                    تمامی محصولات دارای ۲ سال گارانتی تعویض و بیمه حمل تا تحویل به مشتری هستند.
-                  </span>
+
                 </div>
               </div>
             </Reveal>

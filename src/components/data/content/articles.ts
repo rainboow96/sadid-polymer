@@ -2,7 +2,6 @@
 import { hydrofixGuideContent } from "../content/hydrofix-guide";
 import { layflatPunchingGuideContent } from "../content/layflat-punching";
 import { seedlingBagGuideContent } from "../content/seedling-bag-guide";
-import { layflatLdpeVsPvcContent } from "../content/layflat-ldpe-vs-pvc";
 
 export interface ArticlePoint {
     title: string;
@@ -62,7 +61,6 @@ export const articles: ArticleContent[] = [
     hydrofixGuideContent,
     layflatPunchingGuideContent,
     seedlingBagGuideContent,
-    layflatLdpeVsPvcContent,
 ];
 
 export function getArticleBySlug(slug: string): ArticleContent | undefined {

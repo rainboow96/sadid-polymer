@@ -7,14 +7,14 @@ import Breadcrumb from "@/components/ui/breadcrumb";
 import { hydrofixGuideContent } from "../../components/data/content/hydrofix-guide";
 import { layflatPunchingGuideContent } from "../../components/data/content/layflat-punching";
 import { seedlingBagGuideContent } from "../../components/data/content/seedling-bag-guide";
-import { layflatLdpeVsPvcContent } from "../../components/data/content/layflat-ldpe-vs-pvc";
+
 
 
 const allArticles = [
     hydrofixGuideContent,
     layflatPunchingGuideContent,
     seedlingBagGuideContent,
-    layflatLdpeVsPvcContent,
+
 ];
 
 export const metadata: Metadata = {

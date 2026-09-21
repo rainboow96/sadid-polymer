@@ -6,7 +6,6 @@ import { useIntersectionObserver } from "../../app/hooks/useIntersectionObserver
 const ITEMS = [
   { icon: Factory, text: "تولید ملی با مواد درجه‌یک" },
   { icon: BadgeCheck, text: "مقاوم در برابر UV" },
-  { icon: Award, text: "2 سال گارانتی تعویض" },
   { icon: Leaf, text: "۴۰٪ صرفه‌جویی در مصرف آب" },
   { icon: Truck, text: "ارسال سراسری به سراسر کشور" },
   { icon: Headset, text: "مشاوره فنی رایگان" },
