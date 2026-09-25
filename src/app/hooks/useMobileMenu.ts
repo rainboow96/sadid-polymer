@@ -1,22 +1,42 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export function useMobileMenu() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
 
-  const toggleSubmenu = (title: string) => {
-    setOpenSubmenu((prev) => (prev === title ? null : title));
-  };
-
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setIsOpen(false);
-  };
+    setOpenSubmenu(null);
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    setIsOpen((prev) => {
+      const next = !prev;
+      if (!next) setOpenSubmenu(null); 
+      return next;
+    });
+  }, []);
+
+  const toggleSubmenu = useCallback(
+    (key: string) => {
+      if (!isOpen) return; 
+      setOpenSubmenu((prev) => (prev === key ? null : key));
+    },
+    [isOpen]
+  );
+
+  const openMenu = useCallback(() => {
+    setIsOpen(true);
+  }, []);
 
   return {
     isOpen,
-    setIsOpen,
+    setIsOpen, 
+    openMenu,
+    toggleMenu,
+    closeMenu,
     openSubmenu,
     toggleSubmenu,
-    closeMenu,
+    setOpenSubmenu, 
   };
 }

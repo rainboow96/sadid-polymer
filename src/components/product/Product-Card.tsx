@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, BadgeDollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { Product } from "../../components/data/products";
+import type { Product } from "@/components/data/products";
 import { cn } from "@/lib/utils";
 
 type ProductCardProps = {
@@ -17,7 +17,6 @@ export function ProductCard({
   className,
 }: ProductCardProps) {
   const mainImage = product.images?.[0] || "/placeholder.webp";
-  
   const productUrl = `/products/${product.category}/${product.slug}`;
 
   return (
@@ -27,7 +26,12 @@ export function ProductCard({
         className
       )}
     >
-      <Link href={productUrl} className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-black block">
+      <Link
+        href={productUrl}
+        tabIndex={-1}
+        aria-hidden="true"
+        className="relative block aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-black"
+      >
         <Image
           src={mainImage}
           alt={product.name}
@@ -37,7 +41,7 @@ export function ProductCard({
           className="object-cover transition-transform duration-500 ease-out transform-gpu group-hover:scale-105"
         />
         <div
-          aria-hidden
+          aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
         />
       </Link>
@@ -47,23 +51,17 @@ export function ProductCard({
           <h3 className="text-base font-bold leading-7 text-white sm:text-lg">
             <Link
               href={productUrl}
-              className="transition-colors hover:text-cyan-400 block"
+              className="block transition-colors hover:text-cyan-400"
             >
               {product.name}
             </Link>
           </h3>
-          <p className="min-h-[3rem] line-clamp-2 text-sm leading-6 text-slate-300/85">
+          <p className="line-clamp-2 min-h-12 text-sm leading-6 text-slate-300/85">
             {product.shortDescription}
           </p>
         </div>
 
-
         <div className="mt-4 space-y-3">
-          <div className="flex items-center gap-2 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-xs leading-5 text-emerald-300">
-            <BadgeDollarSign aria-hidden className="size-4 shrink-0" />
-            <span>قیمت اقتصادی</span>
-          </div>
-
           <div className="w-full pt-1">
             <Button
               size="lg"
@@ -71,11 +69,14 @@ export function ProductCard({
               className="w-full"
               render={
                 <Link
-                  href={productUrl} 
-                  className="flex items-center justify-center gap-2"
+                  href={productUrl}
+                  className="flex items-center justify-center gap-2 font-semibold"
                 >
-                  مشاهده و استعلام
-                  <ArrowLeft aria-hidden className="size-4" />
+                  <span>مشاهده و استعلام</span>
+                  <ArrowLeft
+                    aria-hidden="true"
+                    className="size-4 shrink-0 transition-transform duration-200 group-hover:-translate-x-1"
+                  />
                 </Link>
               }
             />

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import type { ComponentType } from "react";
@@ -24,9 +26,8 @@ const navLinks: NavLink[] = [
   { title: "تماس با ما", href: "#contact" },
 ];
 
-
 const products = [
-  { name: " لوله لی فلت", href: "/products/layflat" },
+  { name: "لوله لی فلت", href: "/products/layflat" },
   { name: "کیسه کاشت نهال", href: "/products/bags" },
 ];
 
@@ -61,27 +62,27 @@ const socialIcons: Record<string, ComponentType<SocialIconProps>> = {
 
 export default function Footer() {
   const phoneChannel = company.channels.find(
-    (channel) => channel.id === "phone",
+    (channel) => channel.id === "phone"
   );
 
   const emailChannel = company.channels.find(
-    (channel) => channel.id === "email",
+    (channel) => channel.id === "email"
   );
 
   const socialChannels = company.channels.filter((channel) =>
-    ["instagram", "telegram", "whatsapp"].includes(channel.id),
+    ["instagram", "telegram", "whatsapp"].includes(channel.id)
   );
 
   return (
     <footer
       id="footer"
-      className="relative overflow-hidden border-t border-white/[0.07] bg-[#040814]"
+      className="relative overflow-hidden border-t border-white/10 bg-[#040814]"
     >
-
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-[#00e0ff]/50 to-transparent" />
-      <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8"> 
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-cyan-400/50 to-transparent" />
+      
+      <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
-
+          
           <div>
             <Image
               src="/logo-sadid.svg"
@@ -91,7 +92,7 @@ export default function Footer() {
               priority
             />
 
-            <p className="mt-4 max-w-sm text-[13px] leading-[2.1] text-slate-400">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
               {company.description}
             </p>
 
@@ -109,9 +110,9 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     aria-label={channel.title}
                     title={channel.title}
-                    className="btn-ghost flex h-10 w-10 items-center justify-center rounded-xl text-slate-300 transition hover:text-white"
+                    className="btn-ghost flex h-10 w-10 items-center justify-center rounded-xl text-slate-300 transition-colors hover:text-white"
                   >
-                    <Icon className="h-[18px] w-[18px]" />
+                    <Icon className="h-5 w-5" />
                   </a>
                 );
               })}
@@ -119,18 +120,16 @@ export default function Footer() {
           </div>
 
           <nav aria-label="دسترسی سریع">
-            <p className="text-[14px] font-extrabold text-white">
-              دسترسی سریع
-            </p>
-            <ul className="mt-4 space-y-2"> 
+            <p className="text-sm font-extrabold text-white">دسترسی سریع</p>
+            <ul className="mt-4 space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group relative inline-block pb-1 text-[13.5px] font-medium text-slate-400 transition hover:text-slate-100"
+                    className="group relative inline-block pb-1 text-sm font-medium text-slate-400 transition-colors hover:text-slate-100"
                   >
                     {link.title}
-                    <span className="absolute bottom-0 left-0 h-[2px] w-full origin-center scale-x-0 rounded-full bg-brand-blue-gradient transition-transform duration-300 ease-out group-hover:scale-x-100" />
+                    <span className="absolute bottom-0 inset-x-0 h-0.5 w-full origin-center scale-x-0 rounded-full bg-brand-blue-gradient transition-transform duration-300 ease-out group-hover:scale-x-100" />
                   </Link>
                 </li>
               ))}
@@ -138,14 +137,13 @@ export default function Footer() {
           </nav>
 
           <nav aria-label="محصولات">
-            <p className="text-[14px] font-extrabold text-white">محصولات</p>
-
-            <ul className="mt-4 space-y-2 text-[13.5px] font-medium text-slate-400">
+            <p className="text-sm font-extrabold text-white">محصولات</p>
+            <ul className="mt-4 space-y-2 text-sm font-medium text-slate-400">
               {products.map((product) => (
                 <li key={product.href}>
                   <Link
                     href={product.href}
-                    className="transition hover:text-[#7df9ff]"
+                    className="transition-colors hover:text-cyan-300"
                   >
                     {product.name}
                   </Link>
@@ -155,19 +153,16 @@ export default function Footer() {
           </nav>
 
           <div>
-            <p className="text-[14px] font-extrabold text-white">
-              ارتباط با ما
-            </p>
+            <p className="text-sm font-extrabold text-white">ارتباط با ما</p>
 
-            <ul className="mt-4 space-y-2.5 text-[13px] font-medium text-slate-400">
+            <ul className="mt-4 space-y-2.5 text-sm font-medium text-slate-400">
               {phoneChannel && (
                 <li className="flex items-start gap-2.5">
-                  <PhoneCall className="mt-0.5 h-4 w-4 shrink-0 text-[#00e0ff]" />
-
+                  <PhoneCall className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
                   <a
                     href={phoneChannel.href}
                     dir="ltr"
-                    className="transition hover:text-white"
+                    className="transition-colors hover:text-white"
                   >
                     {company.phoneDisplay}
                   </a>
@@ -176,12 +171,11 @@ export default function Footer() {
 
               {emailChannel && (
                 <li className="flex items-start gap-2.5">
-                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#00e0ff]" />
-
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
                   <a
                     href={emailChannel.href}
                     dir="ltr"
-                    className="transition hover:text-white"
+                    className="transition-colors hover:text-white"
                   >
                     {emailChannel.value}
                   </a>
@@ -189,8 +183,8 @@ export default function Footer() {
               )}
 
               {company.addresses[0] && (
-                <li className="flex items-start gap-2.5 leading-6">
-                  <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#00e0ff]" />
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <MapPin className="mt-1 h-4 w-4 shrink-0 text-cyan-400" />
                   <span>{company.addresses[0].value}</span>
                 </li>
               )}
@@ -198,17 +192,16 @@ export default function Footer() {
 
             <a
               href="#top"
-              className="btn-ghost mt-5 inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-[12.5px] font-bold text-white"
+              className="btn-ghost mt-5 inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white transition-colors"
             >
-              <ArrowUp className="h-4 w-4 text-[#00e0ff]" />
+              <ArrowUp className="h-4 w-4 text-cyan-400" />
               بازگشت به بالا
             </a>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/[0.07] pt-6 text-[12px] font-medium text-slate-500 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs font-medium text-slate-500 sm:flex-row">
           <p>{company.copyright}</p>
-
           <p dir="ltr">Designed &amp; Built by Rainbow</p>
         </div>
       </div>

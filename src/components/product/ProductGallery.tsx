@@ -14,7 +14,7 @@ interface ProductGalleryProps {
 
 export function ProductGallery({ images, title }: ProductGalleryProps) {
   const galleryImages = images?.length > 0 ? images : ["/placeholder.webp"];
-  
+
   const { selectedIndex, handlePrev, handleNext, selectImage } = useGallery(
     galleryImages.length
   );
@@ -22,8 +22,8 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
   return (
     <Reveal delay={0.1} y={24} className="w-full">
       <div className="space-y-4">
-        
-        <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 shadow-2xl group">
+        {/* تصویر اصلی و اسلایدر */}
+        <div className="group relative aspect-square w-full overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 shadow-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedIndex}
@@ -31,7 +31,7 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="relative w-full h-full"
+              className="relative h-full w-full"
             >
               <Image
                 src={galleryImages[selectedIndex]}
@@ -44,47 +44,54 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
             </motion.div>
           </AnimatePresence>
 
+          {/* دکمه‌های ناوبری قبلی / بعدی */}
           {galleryImages.length > 1 && (
             <>
               <button
                 type="button"
                 onClick={handlePrev}
-                aria-label="عکس قبلی"
-                className="absolute right-3 top-1/2 -translate-y-1/2 size-10 rounded-full bg-slate-950/70 text-white backdrop-blur-md border border-white/10 flex items-center justify-center opacity-80 transition-all hover:opacity-100 hover:scale-110 hover:bg-cyan-500/20 hover:border-cyan-400/40 cursor-pointer z-10"
+                aria-label="تصویر قبلی"
+                className="absolute right-3 top-1/2 z-10 flex size-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-slate-950/70 text-white opacity-80 backdrop-blur-md transition-all hover:scale-110 hover:border-cyan-400/40 hover:bg-cyan-500/20 hover:opacity-100"
               >
-                <ChevronRight className="size-5" />
+                <ChevronRight className="size-5" aria-hidden="true" />
               </button>
 
               <button
                 type="button"
                 onClick={handleNext}
-                aria-label="عکس بعدی"
-                className="absolute left-3 top-1/2 -translate-y-1/2 size-10 rounded-full bg-slate-950/70 text-white backdrop-blur-md border border-white/10 flex items-center justify-center opacity-80 transition-all hover:opacity-100 hover:scale-110 hover:bg-cyan-500/20 hover:border-cyan-400/40 cursor-pointer z-10"
+                aria-label="تصویر بعدی"
+                className="absolute left-3 top-1/2 z-10 flex size-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-slate-950/70 text-white opacity-80 backdrop-blur-md transition-all hover:scale-110 hover:border-cyan-400/40 hover:bg-cyan-500/20 hover:opacity-100"
               >
-                <ChevronLeft className="size-5" />
+                <ChevronLeft className="size-5" aria-hidden="true" />
               </button>
             </>
           )}
 
+          {/* بج شمارنده تصویر */}
           {galleryImages.length > 1 && (
-            <div className="absolute bottom-4 left-4 rounded-full bg-slate-950/80 px-3 py-1 text-xs text-slate-300 backdrop-blur-md border border-white/10 z-10">
-              {selectedIndex + 1} / {galleryImages.length}
+            <div className="dir-ltr absolute bottom-4 left-4 z-10 rounded-full border border-white/10 bg-slate-950/80 px-3 py-1 font-mono text-xs tabular-nums text-slate-300 backdrop-blur-md">
+              <span>{selectedIndex + 1}</span>
+              <span className="mx-1 text-slate-500">/</span>
+              <span>{galleryImages.length}</span>
             </div>
           )}
         </div>
 
+        {/* لیست بندانگشتی‌ها (Thumbnails) */}
         {galleryImages.length > 1 && (
-          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
+          <div className="scrollbar-thin flex gap-3 overflow-x-auto pb-2">
             {galleryImages.map((img, idx) => (
               <button
-                key={idx}
+                key={`${img}-${idx}`}
                 type="button"
                 onClick={() => selectImage(idx)}
+                aria-label={`نمایش تصویر ${idx + 1} از ${galleryImages.length}`}
+                aria-current={selectedIndex === idx ? "true" : undefined}
                 className={cn(
-                  "relative size-20 shrink-0 overflow-hidden rounded-2xl border transition-all duration-300 bg-slate-900/80 cursor-pointer",
+                  "relative size-20 shrink-0 cursor-pointer overflow-hidden rounded-2xl border bg-slate-900/80 transition-all duration-300",
                   selectedIndex === idx
-                    ? "border-cyan-400 ring-2 ring-cyan-400/30 shadow-[0_0_15px_rgba(6,182,212,0.35)] scale-95"
-                    : "border-white/10 opacity-60 hover:opacity-100 hover:border-white/30"
+                    ? "scale-95 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.35)] ring-2 ring-cyan-400/30"
+                    : "border-white/10 opacity-60 hover:border-white/30 hover:opacity-100"
                 )}
               >
                 <Image

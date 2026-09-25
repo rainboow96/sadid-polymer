@@ -11,11 +11,9 @@ const allArticles = [
   hydrofixGuideContent,
   seedlingBagGuideContent,
   layflatPunchingGuideContent,
-
 ];
 
-
-const recentArticles = [...allArticles].reverse().slice(0, 3);
+const recentArticles = allArticles.slice(-3).reverse();
 
 export default function Articles() {
   return (
@@ -26,15 +24,15 @@ export default function Articles() {
             align="right"
             title="مقالات و"
             highlight="راهنماهای تخصصی"
-            desc="راهنماهای کاربردی برای شناخت متریال، اصول پانچ، نصب و افزایش طول عمر سیستم آبیاری."
-          />
+            desc="راهنماهای کاربردی برای شناخت متریال، اصول پانچ، نصب و افزایش طول عمر سیستم آبیاریblog"
+ />
           <Reveal delay={0.2}>
             <Link
               href="/blog"
-              className="btn-ghost group flex items-center gap-2 rounded-2xl px-5 py-3 text-[13.5px] font-bold text-white transition hover:text-cyan-300"
+              className="btn-ghost group flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-bold text-white transition hover:text-cyan-300"
             >
               مشاهده همه مقالات
-              <ArrowLeft className="h-4 w-4 text-[#00e0ff] transition-transform group-hover:-translate-x-1" />
+              <ArrowLeft className="h-4 w-4 text-cyan-400 transition-transform group-hover:-translate-x-1" />
             </Link>
           </Reveal>
         </div>
@@ -43,8 +41,8 @@ export default function Articles() {
           {recentArticles.map((a, i) => (
             <Reveal key={a.slug} delay={i * 0.12}>
               <Link href={`/blog/${a.slug}`} className="block h-full">
-                <article className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-900/50 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-400/40 hover:bg-slate-900/80 hover:shadow-[0_12px_25px_-8px_rgba(6,182,212,0.25)]">
-                  
+                <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-900/50 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-400/40 hover:bg-slate-900/80 hover:shadow-[0_12px_25px_-8px_rgba(6,182,212,0.25)]">
+
                   <div className="relative h-52 w-full overflow-hidden bg-slate-950">
                     <Image
                       src={a.image}
@@ -57,19 +55,19 @@ export default function Articles() {
                   </div>
 
                   <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-[16px] font-extrabold leading-[1.9] text-white transition group-hover:text-[#7df9ff] line-clamp-2">
+                    <h3 className="text-base font-extrabold leading-loose text-white transition group-hover:text-cyan-200 line-clamp-2">
                       {a.title}
                     </h3>
-                    <p className="mt-2 flex-1 text-[13px] leading-[2] text-slate-400 line-clamp-3">
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400 line-clamp-3">
                       {a.heroExcerpt}
                     </p>
 
-                    <div className="mt-5 flex items-center justify-between border-t border-white/[0.08] pt-4 text-[11.5px] font-medium text-slate-400">
+                    <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4 text-xs font-medium text-slate-400">
                       <span className="flex items-center gap-1.5">
                         <Clock className="h-3.5 w-3.5 text-cyan-400" />
                         {a.readingTime}
                       </span>
-                      
+
                       <span className="flex items-center gap-1 font-semibold text-cyan-300 transition-transform group-hover:-translate-x-1">
                         مطالعه
                         <ArrowLeft className="size-3.5" />

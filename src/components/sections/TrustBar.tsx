@@ -1,16 +1,22 @@
 "use client";
 
-import { BadgeCheck, Award, Leaf, Factory, Truck, Headset, Tags } from "lucide-react";
-import { useIntersectionObserver } from "../../app/hooks/useIntersectionObserver";
+import type { LucideIcon } from "lucide-react";
+import { BadgeCheck, Factory, Headset, Leaf, Tags, Truck } from "lucide-react";
+import { useIntersectionObserver } from "@/app/hooks/useIntersectionObserver";
 
-const ITEMS = [
+interface TrustItem {
+  icon: LucideIcon;
+  text: string;
+}
+
+const ITEMS: readonly TrustItem[] = [
   { icon: Factory, text: "تولید ملی با مواد درجه‌یک" },
-  { icon: BadgeCheck, text: "مقاوم در برابر UV" },
+  { icon: BadgeCheck, text: "مقاوم در برابر اشعه UV" },
   { icon: Leaf, text: "۴۰٪ صرفه‌جویی در مصرف آب" },
-  { icon: Truck, text: "ارسال سراسری به سراسر کشور" },
+  { icon: Truck, text: "ارسال سریع به سراسر کشور" },
   { icon: Headset, text: "مشاوره فنی رایگان" },
   { icon: Tags, text: "قیمت رقابتی مستقیم از کارخانه" },
-];
+] as const;
 
 export default function TrustBar() {
   const { containerRef, isVisible } = useIntersectionObserver({
@@ -18,17 +24,24 @@ export default function TrustBar() {
   });
 
   return (
-    <div
+    <aside
       ref={containerRef}
-      className="relative border-y border-white/[0.07] bg-[#060d1a]/80 p-5 backdrop-blur-xl select-none mt-5"
+      aria-label="ویژگی‌ها و مزایای کلیدی"
+      className="relative mt-5 select-none border-y border-white/[0.07] bg-[#060d1a]/80 p-5 backdrop-blur-xl"
       dir="ltr"
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 sm:w-32 bg-gradient-to-r from-[#060d1a] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 sm:w-32 bg-gradient-to-l from-[#060d1a] to-transparent" />
+      <div 
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#060d1a] to-transparent sm:w-32" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#060d1a] to-transparent sm:w-32" 
+        aria-hidden="true" 
+      />
 
       <div className="overflow-hidden">
         <div
-          className={`flex w-max items-center gap-4 hover:[animation-play-state:paused] ${
+          className={`flex w-max items-center gap-4 hover:[animation-play-state:paused] motion-reduce:animate-none ${
             isVisible ? "animate-marquee" : ""
           }`}
           dir="rtl"
@@ -39,13 +52,13 @@ export default function TrustBar() {
               className="flex shrink-0 items-center gap-4"
               aria-hidden={copyIndex === 1}
             >
-              {ITEMS.map((it, i) => (
+              {ITEMS.map((it) => (
                 <div
-                  key={i}
+                  key={it.text}
                   className="flex shrink-0 items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 py-2.5 transition-colors hover:border-[#00e0ff]/40 hover:bg-white/[0.06]"
                 >
-                  <it.icon className="h-4 w-4 text-[#00e0ff]" />
-                  <span className="whitespace-nowrap text-[13px] font-semibold text-slate-300">
+                  <it.icon className="size-4 text-[#00e0ff]" aria-hidden="true" />
+                  <span className="whitespace-nowrap text-xs font-semibold text-slate-300 sm:text-sm">
                     {it.text}
                   </span>
                 </div>
@@ -54,6 +67,6 @@ export default function TrustBar() {
           ))}
         </div>
       </div>
-    </div>
+    </aside>
   );
 }

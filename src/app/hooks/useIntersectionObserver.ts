@@ -1,38 +1,64 @@
 import { useEffect, useRef, useState } from "react";
 
-interface UseIntersectionObserverProps {
+type UseIntersectionObserverOptions = {
+  root?: Element | Document | null;
   rootMargin?: string;
   threshold?: number | number[];
-}
+  freezeOnceVisible?: boolean;
+  initialIsVisible?: boolean;
+};
 
 export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
-  options: UseIntersectionObserverProps = {}
+  options: UseIntersectionObserverOptions = {}
 ) {
-  const { rootMargin = "100px", threshold = 0 } = options;
+  const {
+    root = null,
+    rootMargin = "100px",
+    threshold = 0,
+    freezeOnceVisible = false,
+    initialIsVisible = false,
+  } = options;
+
   const containerRef = useRef<T>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState<boolean>(initialIsVisible);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin, threshold }
-    );
+    const el = containerRef.current;
+    if (!el) return;
 
-    const currentElement = containerRef.current;
-
-    if (currentElement) {
-      observer.observe(currentElement);
+    if (typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return;
     }
 
+    if (freezeOnceVisible && isVisible) return;
+
+    let mounted = true;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!mounted) return;
+
+        const next = entry.isIntersecting;
+
+        setIsVisible((prev) => (prev === next ? prev : next));
+
+        if (freezeOnceVisible && next) {
+          observer.unobserve(entry.target);
+          observer.disconnect();
+        }
+      },
+      { root, rootMargin, threshold }
+    );
+
+    observer.observe(el);
+
     return () => {
-      if (currentElement) {
-        observer.unobserve(currentElement);
-      }
+      mounted = false;
+      observer.unobserve(el);
       observer.disconnect();
     };
-  }, [rootMargin, threshold]);
+  }, [root, rootMargin, threshold, freezeOnceVisible, isVisible]);
 
   return { containerRef, isVisible };
 }

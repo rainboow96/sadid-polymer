@@ -73,16 +73,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="fa"
       dir="rtl"
-      className={cn("font-sans", vazir.variable)}
+      className={cn("scroll-smooth", vazir.variable)}
     >
-      <body className="flex min-h-screen w-full flex-col overflow-x-clip">
+      <body className="flex min-h-dvh w-full flex-col font-sans bg-background text-foreground antialiased selection:bg-cyan-500/20 selection:text-cyan-300">
         <SmoothScroll>
           <Navbar />
-          <main className="min-w-0 flex-1">{children}</main>
+          <main className="w-full flex-1 min-w-0 overflow-x-clip">
+            {children}
+          </main>
           <Footer />
         </SmoothScroll>
       </body>
     </html>
   );
 }
-

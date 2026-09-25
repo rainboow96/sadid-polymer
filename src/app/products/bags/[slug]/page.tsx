@@ -1,11 +1,11 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PhoneCall, CheckCircle2, ChevronLeft } from "lucide-react";
+import { PhoneCall, CheckCircle2 } from "lucide-react";
 import { products } from "@/components/data/products";
 import { Button } from "@/components/ui/button";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import Breadcrumb from "@/components/ui/breadcrumb";
-
-
+import PageLayout from "@/components/layout/PageLayout";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -19,20 +19,21 @@ export async function generateStaticParams() {
     }));
 }
 
-
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = products.find((p) => p.slug === slug);
-  if (!product) return { title: "محصول یافت نشد" };
+  if (!product) return { title: "محصول یافت نشد | سدید پلیمر" };
 
   return {
     title: `${product.name} | سدید پلیمر`,
     description: product.shortDescription,
+    alternates: {
+      canonical: `/products/layflat/${product.slug}`,
+    },
   };
 }
 
-
-export default async function LayflatProductDetailPage({ params }: Props) {
+export default async function BagsProductDetailPage({ params }: Props) {
   const { slug } = await params;
   const product = products.find((p) => p.slug === slug);
 
@@ -42,73 +43,68 @@ export default async function LayflatProductDetailPage({ params }: Props) {
 
   const breadcrumbItems = [
     { label: "صفحه اصلی", href: "/" },
-    { label: "لوله‌های لی‌فلت", href: "/products/layflat" },
+    { label: "کیسه کاشت نهال", href: "/products/layflat" },
     { label: product.name },
   ];
 
   return (
-    <main className="min-h-screen text-white pt-34 pb-16">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <PageLayout>
+      <Breadcrumb className="mb-4" items={breadcrumbItems} />
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 ">
-          <Breadcrumb items={breadcrumbItems} />
-
+      <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
+        <div className="space-y-4">
+          <ProductGallery images={product.images || []} title={product.name} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="space-y-4">
-            <ProductGallery
-              images={product.images || []}
-              title={product.name}
-            />
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <h1 className="text-2xl font-bold text-gradient sm:text-3xl">
+              {product.name}
+            </h1>
           </div>
 
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <h1 className="text-2xl sm:text-3xl font-bold text-white">
-                {product.name}
-              </h1>
-            </div>
+          <p className="border-b border-white/10 pb-6 text-base leading-relaxed text-slate-300">
+            {product.shortDescription}
+          </p>
 
-            <p className="text-slate-300 leading-relaxed text-base border-b border-white/10 pb-6">
-              {product.shortDescription}
-            </p>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {product.description}
+          </p>
 
-            <p className="text-slate-400 leading-relaxed text-sm">
-              {product.description}
-            </p>
+          <div className="space-y-3 rounded-2xl bg-slate-900/50 p-5">
+            <h2 className="text-sm font-semibold text-cyan-300">
+              مشخصات و ویژگی‌ها:
+            </h2>
+            <ul className="space-y-2 text-sm text-slate-300">
+              {product.features.map((feature, index) => (
+                <li key={index} className="flex items-center gap-2">
+                  <CheckCircle2
+                    className="size-4 shrink-0 text-emerald-400"
+                    aria-hidden="true"
+                  />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-5 space-y-3">
-              <h2 className="font-semibold text-cyan-300 text-sm">مشخصات و ویژگی‌ها:</h2>
-              <ul className="space-y-2 text-sm text-slate-300">
-                {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <CheckCircle2 className="size-4 text-emerald-400 shrink-0" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="pt-4 flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_25px_rgba(6,182,212,0.3)] transition-all p-0"
-                render={
-                  <a
-                    href="tel:09372296015"
-                    className="w-full h-full px-6 py-3 flex items-center justify-center gap-2"
-                  >
-                    <PhoneCall className="size-4 shrink-0" />
-                    <span>استعلام قیمت و مشاوره تلفنی</span>
-                  </a>
-                }
-              />
-            </div>
-
+          <div className="flex flex-col gap-4 pt-4 sm:flex-row">
+            <Button
+              size="lg"
+              className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 p-0 font-medium text-white shadow-[0_0_25px_rgba(6,182,212,0.3)] transition-all hover:from-cyan-400 hover:to-blue-500 sm:w-auto"
+              render={
+                <a
+                  href="tel:09372296015"
+                  className="flex size-full items-center justify-center gap-2 px-6 py-3"
+                >
+                  <PhoneCall className="size-4 shrink-0" aria-hidden="true" />
+                  <span>استعلام قیمت و مشاوره تلفنی</span>
+                </a>
+              }
+            />
           </div>
         </div>
       </div>
-    </main>
+    </PageLayout>
   );
 }

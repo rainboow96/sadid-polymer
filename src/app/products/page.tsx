@@ -1,5 +1,6 @@
-import { redirect } from 'next/navigation';
+// app/products/page.tsx
+import { permanentRedirect } from "next/navigation";
 
 export default function ProductsPage() {
-  redirect('/products/layflat');
+  permanentRedirect("/products/layflat");
 }

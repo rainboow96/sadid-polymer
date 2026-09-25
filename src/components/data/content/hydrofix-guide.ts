@@ -14,12 +14,13 @@ export interface ArticleSection {
     };
 }
 
-export interface ComparisonRow {
-    feature: string;
-    ldpe: string;
-    hdpe: string;
-    pvc: string;
+export interface SpecRow {
+    size: string;
+    width: string;
+    weight: string;
+    productSlug?: string; 
 }
+
 
 export interface ArticleContent {
     slug: string;
@@ -31,14 +32,13 @@ export interface ArticleContent {
     heroExcerpt: string;
     introParagraphs: string[];
     sections: ArticleSection[];
-    comparisonTable: {
+    specsTable?: {
         headers: {
-            feature: string;
-            ldpe: string;
-            hdpe: string;
-            pvc: string;
+            size: string;
+            width: string;
+            weight: string;
         };
-        rows: ComparisonRow[];
+        rows: SpecRow[];
     };
     conclusion: {
         title: string;
@@ -97,7 +97,7 @@ export const hydrofixGuideContent: ArticleContent = {
                     description:
                         "پخش یکدست کربن بلک در جداره لوله به عنوان سدی فیزیکی در برابر اشعه خورشید عمل کرده و عمق نفوذ پرتوهای مخرب را مهار می‌کند.",
                 },
-                              {
+                {
                     title: "تثبیت‌کننده‌های نوری Anti-UV",
                     description:
                         "افزودن مقاوم‌کننده‌های یووی تخصصی باعث حفظ خاصیت کشسانی و جلوگیری از ترد شدن و پیری زودرس جداره لوله در طول فصول گرم زراعی می‌شود.",
@@ -158,52 +158,68 @@ export const hydrofixGuideContent: ArticleContent = {
             ],
         },
     ],
-    comparisonTable: {
-        headers: {
-            feature: "شاخص فنی / اجرایی",
-            ldpe: "لی‌فلت پلی‌اتیلن سبک (LDPE)",
-            hdpe: "لوله سخت پلی‌اتیلن (HDPE)",
-            pvc: "شلنگ‌های لی‌فلت PVC",
-        },
-        rows: [
-            {
-                feature: "نوع ساختار",
-                ldpe: "تک‌لایه، گوشت‌دار و انعطاف‌پذیر",
-                hdpe: "صلب و نیمه‌سخت",
-                pvc: "معمولاً چندلایه با الیاف تقویت‌کننده",
-            },
-            {
-                feature: "وضعیت جابه‌جایی و وزن",
-                ldpe: "دارای وزن استاندارد، ایستایی مناسب روی زمین در باد",
-                hdpe: "سنگین با نیاز به فضای بیشتر در بارگیری",
-                pvc: "وزن بالا و حجم کلاف نسبتاً زیاد",
-            },
-            {
-                feature: "قابلیت تاشوندگی و رول شدن",
-                ldpe: "کاملاً تخت‌شونده پس از قطع آب و رول‌شدن آسان",
-                hdpe: "غیرقابل تا کردن (نیاز به اتصالات زانویی و خمش ملایم)",
-                pvc: "تخت‌شونده و قابل رول مجدد",
-            },
-            {
-                feature: "نحوه انشعاب‌گیری و نصب تیپ",
-                ldpe: "پانچ مستقیم با پانچر و آب‌بندی مطلوب",
-                hdpe: "سوراخ‌کاری با گردبر و استفاده از کمربند لوله",
-                pvc: "پانچ و اتصال با بست و مغزی‌های مخصوص",
-            },
-            {
-                feature: "مقاومت در برابر آفتاب",
-                ldpe: "تثبیت‌شده با مستربچ‌های ضد یووی (Anti-UV)",
-                hdpe: "پایداری طبیعی مناسب به واسطه ساختار HDPE",
-                pvc: "مقاومت مناسب با ترکیبات تثبیت‌کننده اختصاصی",
-            },
-            {
-                feature: "کاربرد معمول در مزرعه",
-                ldpe: "مانیفولد آبیاری قطره‌ای و تیپ با بودجه بهینه",
-                hdpe: "خطوط اصلی و نیمه‌اصلی با فشارهای بالا",
-                pvc: "خطوط پرفشار و مصارف صنعتی یا پمپاژ سنگین",
-            },
-        ],
+
+specsTable: {
+  headers: {
+    size: "سایز (اینچ)",
+    width: "عرض لوله (میلی‌متر)",
+    weight: "وزن به ازای هر ۱۰۰ متر (کیلوگرم)",
+  },
+  rows: [
+    {
+      size: "۱ و ۱/۴ اینچ",
+      width: "۷۰ میلی‌متر",
+      weight: "۹",
+      productSlug: "products/layflat/layflat-1-1-4", // اگر نام دیگری دارد طبق پروژه‌تان تغییر دهید
     },
+    {
+      size: "۱.۵ اینچ",
+      width: "۸۵ میلی‌متر",
+      weight: "۱۴",
+      productSlug: "layflat-1-5", // 👈 این دقیقاً طبق عکس شماست
+    },
+    {
+      size: "۲ اینچ",
+      width: "۱۰۵ میلی‌متر",
+      weight: "۱۹",
+      productSlug: "layflat-2",
+    },
+    {
+      size: "۲.۵ اینچ",
+      width: "۱۳۰ میلی‌متر",
+      weight: "۲۲",
+      productSlug: "layflat-2-5",
+    },
+    {
+      size: "۳ اینچ",
+      width: "140 میلی‌متر",
+      weight: "۲۴",
+      productSlug: "layflat-3",
+    },
+    {
+      size: "۴ اینچ",
+      width: "۱۸۰ میلی‌متر",
+      weight: "۲۸",
+      productSlug: "layflat-4",
+    },
+    {
+      size: "۵ اینچ",
+      width: "۲۲۵ میلی‌متر",
+      weight: "۳۰",
+      productSlug: "layflat-5",
+    },
+    {
+      size: "۶ اینچ",
+      width: "۲۶۵ میلی‌متر",
+      weight: "۳۲",
+      productSlug: "layflat-6",
+    },
+  ],
+},
+
+
+
+
     conclusion: {
         title: "جمع‌بندی",
         paragraphs: [

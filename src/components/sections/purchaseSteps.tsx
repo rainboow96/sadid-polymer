@@ -2,13 +2,12 @@ import { PhoneCall } from "lucide-react";
 import SectionHead from "./sectionHead";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { purchaseSteps } from "../data/content";
-import { company } from "../data/content";
+import { purchaseSteps, company } from "../data/content";
 import { cn } from "@/lib/utils";
 import { FadeIn } from "@/components/ui/fade-in";
+import Link from "next/link";
 
 type PurchaseStepsProps = {
-  productName?: string;
   id?: string;
   className?: string;
 };
@@ -41,9 +40,9 @@ export function PurchaseSteps({
             return (
               <li key={step.order} className="flex flex-col list-none">
                 <FadeIn delay={index * 0.1} className="flex h-full flex-col">
-                  <Card className="items-center gap-4 py-6 text-center">
+                  <Card className="group flex h-full flex-col items-center gap-4 py-6 text-center transition-colors">
                     <span className="mb-1 grid size-12 place-items-center rounded-2xl border border-cyan-500/20 bg-cyan-500/10 text-cyan-300 transition-colors group-hover:bg-cyan-500/20 group-hover:text-cyan-200">
-                      <Icon aria-hidden className="size-6" />
+                      <Icon aria-hidden="true" className="size-6" />
                     </span>
 
                     <h3 className="text-sm font-bold text-white">
@@ -51,12 +50,12 @@ export function PurchaseSteps({
                       {step.title}
                     </h3>
 
-                    <p className="flex-1 px-1 text-[12px] leading-7 text-slate-300/80">
+                    <p className="flex-1 px-1 text-xs leading-6 text-slate-300/80">
                       {step.description}
                     </p>
 
                     {step.highlight ? (
-                      <span className="mt-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-medium text-emerald-300">
+                      <span className="mt-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-300">
                         {step.highlight}
                       </span>
                     ) : null}
@@ -72,10 +71,10 @@ export function PurchaseSteps({
             <Button
               size="lg"
               render={
-                <a href={`tel:${company.phone}`}>
-                  <PhoneCall aria-hidden className="size-4" />
+                <Link href="/contact">
+                  <PhoneCall aria-hidden="true" className="size-4" />
                   تماس با تیم فروش
-                </a>
+                </Link>
               }
             />
           </div>
