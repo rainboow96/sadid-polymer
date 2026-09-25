@@ -79,7 +79,6 @@ export default async function LayflatProductDetailPage({ params }: Props) {
               مشخصات و ویژگی‌ها:
             </h2>
             <ul className="space-y-2 text-sm text-slate-300">
-              {/* در صورت وجود وزن، این آیتم نمایش داده می‌شود */}
               {product.weight && (
                 <li className="flex items-center gap-2 font-medium text-cyan-200">
                   <Scale
@@ -93,7 +92,6 @@ export default async function LayflatProductDetailPage({ params }: Props) {
                 </li>
               )}
 
-              {/* بقیه ویژگی‌های محصول */}
               {product.features.map((feature, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <CheckCircle2

@@ -22,7 +22,6 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
   return (
     <Reveal delay={0.1} y={24} className="w-full">
       <div className="space-y-4">
-        {/* تصویر اصلی و اسلایدر */}
         <div className="group relative aspect-square w-full overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 shadow-2xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -44,7 +43,6 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
             </motion.div>
           </AnimatePresence>
 
-          {/* دکمه‌های ناوبری قبلی / بعدی */}
           {galleryImages.length > 1 && (
             <>
               <button
@@ -67,7 +65,6 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
             </>
           )}
 
-          {/* بج شمارنده تصویر */}
           {galleryImages.length > 1 && (
             <div className="dir-ltr absolute bottom-4 left-4 z-10 rounded-full border border-white/10 bg-slate-950/80 px-3 py-1 font-mono text-xs tabular-nums text-slate-300 backdrop-blur-md">
               <span>{selectedIndex + 1}</span>
@@ -77,7 +74,6 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
           )}
         </div>
 
-        {/* لیست بندانگشتی‌ها (Thumbnails) */}
         {galleryImages.length > 1 && (
           <div className="scrollbar-thin flex gap-3 overflow-x-auto pb-2">
             {galleryImages.map((img, idx) => (

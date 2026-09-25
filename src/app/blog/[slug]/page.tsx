@@ -149,7 +149,6 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
               )}
             </section>
           ))}
-          {/* جدول مشخصات فنی متصل به صفحات محصول */}
           {article.specsTable && (
             <section className="space-y-4 pt-6">
               <h2 className="border-r-4 border-cyan-400 pr-3 text-lg font-bold text-white sm:text-2xl">

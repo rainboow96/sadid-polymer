@@ -19,7 +19,6 @@ export default function FAQ() {
   return (
     <section className="relative py-14 sm:py-16">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2">
-        {/* ستون توضیحات */}
         <div>
           <Reveal>
             <SectionHead
@@ -60,7 +59,6 @@ export default function FAQ() {
           </Reveal>
         </div>
 
-        {/* ستون آکاردئون */}
         <div className="space-y-4">
           <Accordion defaultValue={["item-0"]}>
             {FAQS.map((faq, index) => {

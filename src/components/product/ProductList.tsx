@@ -13,7 +13,6 @@ export function ProductList({ title, description, products }: ProductListProps) 
     <section className="w-full pb-12 pt-2 sm:pb-16 sm:pt-4 lg:pb-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* هدر بخش لیست محصولات */}
         <div className="mb-6 text-center sm:mb-10 lg:mb-12">
           <Reveal delay={0.05} y={20}>
             <h1 className="text-gradient text-2xl font-black leading-snug sm:text-3xl sm:leading-tight lg:text-4xl">
@@ -28,7 +27,6 @@ export function ProductList({ title, description, products }: ProductListProps) 
           </Reveal>
         </div>
 
-        {/* نمایش گرید یا وضعیت خالی */}
         {products.length > 0 ? (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:gap-8">
             {products.map((product, index) => (
