@@ -30,12 +30,12 @@ const STATS_DATA: readonly StatItem[] = [
     label: "صرفه‌جویی در آب",
     icon: Droplets,
   },
-  {
-    id: "lifespan",
-    value: `+ ${toPersianDigits("8")}`,
-    label: "طول عمر مفید",
-    icon: ShieldCheck,
-  },
+{
+  id: "sizes",
+  value: `+ ${toPersianDigits("8")}`,
+  label: "تنوع سایز و کاربری",
+  icon: ShieldCheck, 
+},
 ] as const;
 
 const SMOOTH_EASE = [0.16, 1, 0.3, 1] as const;
@@ -136,15 +136,17 @@ export default function Hero() {
                 transition={smoothTransition(0, 1.1)}
                 className="relative w-full"
               >
-                <Image
-                  src="/hero1.webp"
-                  alt="لوله لی فلت آبیاری سدید پلیمر"
-                  width={2080}
-                  height={2080}
-                  priority
-                  sizes="(max-width: 640px) 280px, (max-width: 1023px) 450px, 50vw"
-                  className="h-auto w-full object-contain drop-shadow-[0_20px_50px_rgba(0,180,255,0.18)]"
-                />
+<Image
+  src="/hero1.webp"
+  alt="لوله لی فلت آبیاری سدید پلیمر"
+  width={600}
+  height={600}
+  priority
+  quality={85}
+  sizes="(max-width: 640px) 280px, (max-width: 1024px) 450px, 600px"
+  className="h-auto w-full object-contain drop-shadow-[0_20px_50px_rgba(0,180,255,0.18)]"
+/>
+
               </motion.div>
 
               <motion.div
