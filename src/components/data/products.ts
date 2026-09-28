@@ -100,7 +100,9 @@ export const products: Product[] = [
       "قیمت اقتصادی",
     ],
     images: [
-      ""
+      "/products/2.5/layflat2.5-1.webp",
+      "/products/2.5/layflat2.5-2.webp",
+      "/products/2.5/layflat2.5-3.webp",
     ]
   },
   {
@@ -166,7 +168,9 @@ export const products: Product[] = [
       "قیمت اقتصادی",
     ],
     images: [
-      "",
+      "/products/5/layflat5-1.webp",
+      "/products/5/layflat5-2.webp",
+      "/products/5/layflat5-3.webp",
     ]
   },
   {

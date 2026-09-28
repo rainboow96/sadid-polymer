@@ -2,12 +2,11 @@ import Link from "next/link";
 import { MapPin, ArrowUpLeft, Clock, Phone, ExternalLink } from "lucide-react";
 import { company } from "../data/content";
 
-const NESHAN_URL = "https://nshn.ir/...";
+const LAT = 37.47291956346806;
+const LNG = 57.32733223436204;
 
-const LAT = 37.47291590231388;
-const LNG = 57.32713953848807;
+const NESHAN_URL = `https://nshn.ir/?lat=${LAT}&lng=${LNG}`;
 
-// محاسبه خارج از بدنه کامپوننت جهت جلوگیری از پردازش مکرر در هر رندر
 const BBOX = `${LNG - 0.006}%2C${LAT - 0.003}%2C${LNG + 0.006}%2C${LAT + 0.003}`;
 const OSM_EMBED_URL = `https://www.openstreetmap.org/export/embed.html?bbox=${BBOX}&layer=mapnik&marker=${LAT}%2C${LNG}`;
 

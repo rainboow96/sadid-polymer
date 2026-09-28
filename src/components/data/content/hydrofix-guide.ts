@@ -170,13 +170,13 @@ specsTable: {
       size: "۱ و ۱/۴ اینچ",
       width: "۷۰ میلی‌متر",
       weight: "۹",
-      productSlug: "products/layflat/layflat-1-1-4", // اگر نام دیگری دارد طبق پروژه‌تان تغییر دهید
+      productSlug: "products/layflat/layflat-1-1-4", 
     },
     {
       size: "۱.۵ اینچ",
       width: "۸۵ میلی‌متر",
       weight: "۱۴",
-      productSlug: "layflat-1-5", // 👈 این دقیقاً طبق عکس شماست
+      productSlug: "layflat-1-5", 
     },
     {
       size: "۲ اینچ",

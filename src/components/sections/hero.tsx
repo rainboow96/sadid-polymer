@@ -2,33 +2,49 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck, Droplets, Gauge } from "lucide-react";
-import { motion } from "framer-motion";
+import { Droplets, Gauge, ShieldCheck, type LucideIcon } from "lucide-react";
+import { motion, type Transition } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
 import GridBackground from "../ui/gridBackground";
 import StatCard from "./statCard";
 import { toPersianDigits } from "../utils/formatters";
 
-const stats = [
+interface StatItem {
+  id: string;
+  value: string;
+  label: string;
+  icon: LucideIcon;
+}
+
+const STATS_DATA: readonly StatItem[] = [
   {
+    id: "pressure",
     value: `${toPersianDigits("3")} بار`,
     label: "تحمل فشار کاری",
     icon: Gauge,
   },
   {
+    id: "water-saving",
     value: `${toPersianDigits("40")}%`,
     label: "صرفه‌جویی در آب",
     icon: Droplets,
   },
   {
+    id: "lifespan",
     value: `+ ${toPersianDigits("8")}`,
     label: "طول عمر مفید",
     icon: ShieldCheck,
   },
-];
+] as const;
 
-const smoothEase = [0.16, 1, 0.3, 1] as const;
+const SMOOTH_EASE = [0.16, 1, 0.3, 1] as const;
+
+const smoothTransition = (delay = 0, duration = 1.0): Transition => ({
+  delay,
+  duration,
+  ease: SMOOTH_EASE,
+});
 
 export default function Hero() {
   return (
@@ -36,23 +52,29 @@ export default function Hero() {
       <section
         id="top"
         dir="rtl"
-        className="relative flex min-h-[100dvh] w-full flex-col justify-center overflow-hidden pt-20 pb-8 sm:pt-24 sm:pb-12 lg:min-h-dvh lg:pt-24 lg:pb-10"
+        aria-label="بخش معرفی سدید پلیمر"
+        className="relative flex min-h-[100dvh] w-full flex-col overflow-hidden pb-8 pt-[110px] lg:min-h-dvh lg:justify-center lg:pb-10 lg:pt-24"
       >
         <div className="relative mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-6 px-4 sm:px-8 lg:grid-cols-2 lg:gap-8 lg:px-10">
-
+          
           <div className="relative z-20 flex w-full flex-col items-center text-center lg:items-start lg:text-right">
             <div className="w-full max-w-xl">
               <FadeIn delay={0.15}>
-                <h1 className="text-2xl font-black leading-tight text-slate-100 sm:text-3xl md:text-4xl xl:text-5xl xl:leading-tight">
-                  جریان هوشمند آب،
-                  <br />
-                  <span className="text-gradient">از رول تا ریشه</span>
+                <h1 className="text-xl font-black leading-tight tracking-tight text-slate-100 xs:text-2xl sm:text-3xl md:text-4xl xl:text-5xl">
+                  <span className="block whitespace-nowrap">
+                    جریان هوشمند آب،
+                  </span>
+                  <span className="mt-1.5 block text-gradient">
+                    از رول تا ریشه
+                  </span>
                 </h1>
               </FadeIn>
 
               <FadeIn delay={0.3}>
                 <p className="mt-3 max-w-lg text-xs leading-relaxed text-slate-300/90 sm:mt-4 sm:text-sm md:text-base">
-                  سدید پلیمر توزیع‌کننده تخصصی لوله‌های لی‌فلت آبیاری قطره‌ای و کیسه‌های کاشت نهال با مقاومت صنعتی، انعطاف‌پذیری بی‌نظیر و دوامی که برای شرایط سخت کشاورزی ایران طراحی شده است.
+                  سدید پلیمر توزیع‌کننده تخصصی لوله‌های لی‌فلت آبیاری قطره‌ای و
+                  کیسه‌های کاشت نهال با مقاومت صنعتی، انعطاف‌پذیری بی‌نظیر و دوامی
+                  که برای شرایط سخت کشاورزی ایران طراحی شده است.
                 </p>
               </FadeIn>
             </div>
@@ -86,12 +108,12 @@ export default function Hero() {
               className="mt-6 w-full max-w-sm sm:mt-7 sm:max-w-md lg:max-w-lg"
             >
               <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
-                {stats.map((s) => (
+                {STATS_DATA.map((stat) => (
                   <StatCard
-                    key={s.label}
-                    value={s.value}
-                    label={s.label}
-                    icon={s.icon}
+                    key={stat.id}
+                    value={stat.value}
+                    label={stat.label}
+                    icon={stat.icon}
                   />
                 ))}
               </div>
@@ -100,7 +122,7 @@ export default function Hero() {
 
           <div className="relative z-10 flex w-full items-center justify-center lg:justify-end">
             <div className="relative w-full max-w-[280px] xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl lg:scale-110 xl:max-w-3xl">
-
+              
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -111,10 +133,7 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.88 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 1.1,
-                  ease: smoothEase,
-                }}
+                transition={smoothTransition(0, 1.1)}
                 className="relative w-full"
               >
                 <Image
@@ -131,11 +150,7 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.7 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  delay: 0.6,
-                  duration: 1.0,
-                  ease: smoothEase,
-                }}
+                transition={smoothTransition(0.6, 1.0)}
                 className="absolute bottom-[-2%] left-[78%] z-10 w-[24%]"
               >
                 <Image
@@ -151,11 +166,7 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.7 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  delay: 0.8,
-                  duration: 1.0,
-                  ease: smoothEase,
-                }}
+                transition={smoothTransition(0.8, 1.0)}
                 className="absolute bottom-[-2%] left-[64%] z-20 w-[25%]"
               >
                 <Image
@@ -167,10 +178,8 @@ export default function Hero() {
                   className="h-auto w-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.5)]"
                 />
               </motion.div>
-
             </div>
           </div>
-
         </div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#060d1d] to-transparent sm:h-20" />

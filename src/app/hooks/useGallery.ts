@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 function wrapIndex(index: number, count: number) {
   if (count <= 0) return 0;
-  // wrap امن برای اعداد منفی هم
   return ((index % count) + count) % count;
 }
 
@@ -17,7 +16,6 @@ export function useGallery(imagesCount: number, options?: UseGalleryOptions) {
     wrapIndex(initialIndex, imagesCount)
   );
 
-  // همگام‌سازی وقتی imagesCount تغییر می‌کند
   useEffect(() => {
     setSelectedIndex((prev) => wrapIndex(prev, imagesCount));
   }, [imagesCount]);
