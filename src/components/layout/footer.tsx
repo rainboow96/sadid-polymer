@@ -20,10 +20,11 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { title: "صفحه اصلی", href: "#home" },
-  { title: "محصولات", href: "#products" },
-  { title: "سوالات متداول", href: "#faq" },
-  { title: "تماس با ما", href: "#contact" },
+  { title: "صفحه اصلی", href: "/" },
+  { title: "محصولات", href: "/products" },
+  { title: "سوالات متداول", href: "/faq" },
+  { title: "مقالات", href: "/blog" },
+  { title: "تماس با ما", href: "/contact" },
 ];
 
 const products = [
