@@ -75,7 +75,7 @@ export default function FAQ() {
                       <span
                         className="grid size-9 shrink-0 place-items-center rounded-full border transition-transform duration-300 group-aria-expanded/accordion-trigger:rotate-45"
                         style={{
-                          borderColor: `${BRAND_CYAN}4D`, // ~30%
+                          borderColor: `${BRAND_CYAN}4D`,
                           color: BRAND_CYAN,
                         }}
                       >
