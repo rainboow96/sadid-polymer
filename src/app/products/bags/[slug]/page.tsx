@@ -7,13 +7,15 @@ import { ProductGallery } from "@/components/product/ProductGallery";
 import Breadcrumb from "@/components/ui/breadcrumb";
 import PageLayout from "@/components/layout/PageLayout";
 
+const SITE_URL = "https://sadidpolymer.ir";
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
   return products
-    .filter((p) => p.category === "layflat")
+    .filter((p) => p.category === "bags")
     .map((product) => ({
       slug: product.slug,
     }));
@@ -24,11 +26,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = products.find((p) => p.slug === slug);
   if (!product) return { title: "محصول یافت نشد | سدید پلیمر" };
 
+  const canonicalUrl = `${SITE_URL}/products/bags/${product.slug}`;
+  const firstImage = product.images?.[0] ? `${SITE_URL}${product.images[0]}` : undefined;
+
   return {
-    title: `${product.name} | سدید پلیمر`,
-    description: product.shortDescription,
+    title: `${product.name} | کیسه کاشت نهال | سدید پلیمر`,
+    description: `${product.shortDescription} خرید مستقیم انواع کیسه نهال و گروبگ با کیفیت صادراتی و قیمت عمده از سدید پلیمر.`,
     alternates: {
-      canonical: `/products/layflat/${product.slug}`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${product.name} | سدید پلیمر`,
+      description: product.shortDescription,
+      url: canonicalUrl,
+      siteName: "سدید پلیمر",
+      locale: "fa_IR",
+      type: "website",
+      images: firstImage ? [{ url: firstImage, alt: product.name }] : undefined,
     },
   };
 }
@@ -43,27 +57,59 @@ export default async function BagsProductDetailPage({ params }: Props) {
 
   const breadcrumbItems = [
     { label: "صفحه اصلی", href: "/" },
-    { label: "کیسه کاشت نهال", href: "/products/layflat" },
+    { label: "کیسه کاشت نهال و گروبگ", href: "/products/bags" },
     { label: product.name },
   ];
 
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.shortDescription || product.description,
+    image: product.images?.map((img) => `${SITE_URL}${img}`) || [],
+    category: "کیسه کاشت نهال و نایلون گروبگ",
+    brand: {
+      "@type": "Brand",
+      name: "سدید پلیمر",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `${SITE_URL}/products/bags/${product.slug}`,
+      priceCurrency: "IRR",
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "Organization",
+        name: "سدید پلیمر",
+      },
+    },
+  };
+
   return (
     <PageLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+
       <Breadcrumb className="mb-4" items={breadcrumbItems} />
 
-      <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
-        <div className="space-y-4">
-          <ProductGallery images={product.images || []} title={product.name} />
+      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-10">
+        {/* بخش گالری تصاویر: در دسکتاپ ۵ ستون از ۱۲ ستون را می‌گیرد (بهینه‌سازی ابعاد کادر) */}
+        <div className="w-full lg:col-span-5 lg:sticky lg:top-24">
+          <div className="mx-auto w-full max-w-md lg:max-w-none">
+            <ProductGallery images={product.images || []} title={product.name} />
+          </div>
         </div>
 
-        <div className="space-y-6">
+        {/* بخش توضیحات و دکمه‌های تماس: ۷ ستون از ۱۲ ستون */}
+        <div className="space-y-6 lg:col-span-7">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold text-gradient sm:text-3xl">
               {product.name}
             </h1>
           </div>
 
-          <p className="border-b border-white/10 pb-6 text-base leading-relaxed text-slate-300">
+          <p className="border-b border-white/10 pb-5 text-base leading-relaxed text-slate-300">
             {product.shortDescription}
           </p>
 
@@ -71,11 +117,11 @@ export default async function BagsProductDetailPage({ params }: Props) {
             {product.description}
           </p>
 
-          <div className="space-y-3 rounded-2xl bg-slate-900/50 p-5">
+          <div className="space-y-3 rounded-2xl bg-slate-900/50 p-5 border border-white/5 backdrop-blur-sm">
             <h2 className="text-sm font-semibold text-cyan-300">
               مشخصات و ویژگی‌ها:
             </h2>
-            <ul className="space-y-2 text-sm text-slate-300">
+            <ul className="space-y-2.5 text-sm text-slate-300">
               {product.features.map((feature, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <CheckCircle2
@@ -88,7 +134,7 @@ export default async function BagsProductDetailPage({ params }: Props) {
             </ul>
           </div>
 
-          <div className="flex flex-col gap-4 pt-4 sm:flex-row">
+          <div className="flex flex-col gap-4 pt-2 sm:flex-row">
             <Button
               size="lg"
               className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 p-0 font-medium text-white shadow-[0_0_25px_rgba(6,182,212,0.3)] transition-all hover:from-cyan-400 hover:to-blue-500 sm:w-auto"
