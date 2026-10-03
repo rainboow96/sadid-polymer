@@ -13,7 +13,6 @@ import {
   type ArticleSection,
   type ArticlePoint,
   type SpecRow,
-  type ComparisonRow,
 } from "@/components/data/content/articles";
 
 type ArticlePageProps = {
@@ -31,10 +30,40 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return { title: "مقاله یافت نشد | سدید پلیمر" };
 
+  const canonicalUrl = `https://www.sadidpolymer.ir/blog/${article.slug}`;
+  const imageUrl = article.image
+    ? `https://www.sadidpolymer.ir${article.image}`
+    : "https://www.sadidpolymer.ir/images/default-blog.webp";
+
   return {
     title: `${article.title} | سدید پلیمر`,
     description: article.heroExcerpt,
-    alternates: { canonical: `/blog/${article.slug}` },
+    keywords: [
+      article.title,
+      "لوله لی فلت",
+      "لوله تاشو کشاورزی",
+      "شلنگ ابیاری",
+      "سدید پلیمر",
+      "تجهیزات آبیاری",
+    ],
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title: `${article.title} | سدید پلیمر`,
+      description: article.heroExcerpt,
+      url: canonicalUrl,
+      siteName: "سدید پلیمر",
+      locale: "fa_IR",
+      type: "article",
+      publishedTime: article.publishedAt,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
   };
 }
 
@@ -44,8 +73,43 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
 
   if (!article) notFound();
 
+  // Structured Data (JSON-LD) for Google
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.heroExcerpt,
+    image: article.image
+      ? `https://www.sadidpolymer.ir${article.image}`
+      : "https://www.sadidpolymer.ir/images/default-blog.webp",
+    datePublished: article.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: "سدید پلیمر",
+      url: "https://www.sadidpolymer.ir",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "سدید پلیمر",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.sadidpolymer.ir/logo.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.sadidpolymer.ir/blog/${article.slug}`,
+    },
+  };
+
   return (
     <PageLayout>
+      {/* Schema Injection */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <div className="mx-auto max-w-4xl">
         <div className="mb-8">
           <Breadcrumb
@@ -149,6 +213,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
               )}
             </section>
           ))}
+
           {article.specsTable && (
             <section className="space-y-4 pt-6">
               <h2 className="border-r-4 border-cyan-400 pr-3 text-lg font-bold text-white sm:text-2xl">
@@ -203,9 +268,6 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
               </div>
             </section>
           )}
-
-
-
 
           {article.conclusion && (
             <section className="rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900/80 to-slate-950 p-6 sm:p-8">

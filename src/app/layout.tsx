@@ -48,8 +48,11 @@ export const metadata: Metadata = {
     "سدید پلیمر",
   ],
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.png",
   },
+
   openGraph: {
     title: "سدید پلیمر | پخش تخصصی لوله‌های لی‌فلت و شیلنگ باغبانی",
     description: "توزیع و پخش عمده لوله لی‌فلت آبیاری، شیلنگ باغبانی و کیسه کاشت نهال.",
