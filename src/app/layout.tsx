@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import SmoothScroll from "@/components/ui/SmoothScroll";
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 
 const vazir = localFont({
   src: [
@@ -85,7 +87,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </main>
           <Footer />
         </SmoothScroll>
+        <GoogleAnalytics gaId="G-XNX5LVRK27" />
       </body>
+
     </html>
   );
 }
