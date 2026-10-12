@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://www.sadidpolymer.ir/sitemap.xml',
+    sitemap: 'https://sadidpolymer.ir/sitemap.xml', 
   };
 }

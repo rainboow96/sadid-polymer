@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next';
+import { products } from "@/components/data/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.sadidpolymer.ir';
+  const baseUrl = 'https://sadidpolymer.ir'; 
   const currentDate = new Date();
 
-  return [
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: currentDate,
@@ -48,4 +49,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
   ];
+
+  const productRoutes: MetadataRoute.Sitemap = products.map((product) => {
+    let categoryPath = "layflat";
+    if (product.category === "bags") categoryPath = "bags";
+    if (product.category === "fittings") categoryPath = "fittings";
+
+    return {
+      url: `${baseUrl}/products/${categoryPath}/${product.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    };
+  });
+
+  return [...staticRoutes, ...productRoutes];
 }
