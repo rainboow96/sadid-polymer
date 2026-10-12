@@ -93,16 +93,6 @@ export default async function LayflatProductDetailPage({ params }: Props) {
       "@type": "Brand",
       name: "سدید پلیمر",
     },
-    offers: {
-      "@type": "Offer",
-      url: `${SITE_URL}/products/layflat/${product.slug}`,
-      priceCurrency: "IRR",
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "Organization",
-        name: "سدید پلیمر",
-      },
-    },
   };
 
   const breadcrumbSchema = {
