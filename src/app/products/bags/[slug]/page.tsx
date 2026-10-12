@@ -94,14 +94,12 @@ export default async function BagsProductDetailPage({ params }: Props) {
       <Breadcrumb className="mb-4" items={breadcrumbItems} />
 
       <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-10">
-        {/* بخش گالری تصاویر: در دسکتاپ ۵ ستون از ۱۲ ستون را می‌گیرد (بهینه‌سازی ابعاد کادر) */}
         <div className="w-full lg:col-span-5 lg:sticky lg:top-24">
           <div className="mx-auto w-full max-w-md lg:max-w-none">
             <ProductGallery images={product.images || []} title={product.name} />
           </div>
         </div>
 
-        {/* بخش توضیحات و دکمه‌های تماس: ۷ ستون از ۱۲ ستون */}
         <div className="space-y-6 lg:col-span-7">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold text-gradient sm:text-3xl">

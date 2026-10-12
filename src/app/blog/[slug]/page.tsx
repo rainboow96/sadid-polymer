@@ -15,6 +15,8 @@ import {
   type SpecRow,
 } from "@/components/data/content/articles";
 
+const SITE_URL = "https://sadidpolymer.ir";
+
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
@@ -30,10 +32,10 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return { title: "مقاله یافت نشد | سدید پلیمر" };
 
-  const canonicalUrl = `https://www.sadidpolymer.ir/blog/${article.slug}`;
+  const canonicalUrl = `${SITE_URL}/blog/${article.slug}`;
   const imageUrl = article.image
-    ? `https://www.sadidpolymer.ir${article.image}`
-    : "https://www.sadidpolymer.ir/images/default-blog.webp";
+    ? `${SITE_URL}${article.image}`
+    : `${SITE_URL}/images/default-blog.webp`;
 
   return {
     title: `${article.title} | سدید پلیمر`,
@@ -79,25 +81,25 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
     headline: article.title,
     description: article.heroExcerpt,
     image: article.image
-      ? `https://www.sadidpolymer.ir${article.image}`
-      : "https://www.sadidpolymer.ir/images/default-blog.webp",
+      ? `${SITE_URL}${article.image}`
+      : `${SITE_URL}/images/default-blog.webp`,
     datePublished: article.publishedAt,
     author: {
       "@type": "Organization",
       name: "سدید پلیمر",
-      url: "https://www.sadidpolymer.ir",
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
       name: "سدید پلیمر",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.sadidpolymer.ir/logo.png",
+        url: `${SITE_URL}/logo.png`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://www.sadidpolymer.ir/blog/${article.slug}`,
+      "@id": `${SITE_URL}/blog/${article.slug}`,
     },
   };
 

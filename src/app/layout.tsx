@@ -52,9 +52,6 @@ export const metadata: Metadata = {
     "نوار تیپ",
     "سدید پلیمر",
   ],
-  alternates: {
-    canonical: "/",
-  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
