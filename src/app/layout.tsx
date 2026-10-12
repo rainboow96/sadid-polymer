@@ -7,8 +7,7 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import SmoothScroll from "@/components/ui/SmoothScroll";
-import { GoogleAnalytics } from '@next/third-parties/google';
-
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const vazir = localFont({
   src: [
@@ -32,7 +31,11 @@ const vazir = localFont({
   display: "swap",
 });
 
+const SITE_URL = "https://sadidpolymer.ir";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+
   title: {
     default: "سدید پلیمر | پخش تخصصی لوله‌های لی‌فلت، شیلنگ باغبانی و کیسه نهال",
     template: "%s | سدید پلیمر",
@@ -49,6 +52,9 @@ export const metadata: Metadata = {
     "نوار تیپ",
     "سدید پلیمر",
   ],
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -58,14 +64,56 @@ export const metadata: Metadata = {
   openGraph: {
     title: "سدید پلیمر | پخش تخصصی لوله‌های لی‌فلت و شیلنگ باغبانی",
     description: "توزیع و پخش عمده لوله لی‌فلت آبیاری، شیلنگ باغبانی و کیسه کاشت نهال.",
+    url: SITE_URL,
+    siteName: "سدید پلیمر",
     locale: "fa_IR",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg", 
+        width: 1200,
+        height: 630,
+        alt: "سدید پلیمر | لوله لی فلت و شیلنگ باغبانی",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "سدید پلیمر | پخش تخصصی لوله‌های لی‌فلت و شیلنگ باغبانی",
+    description: "توزیع و پخش عمده لوله لی‌فلت آبیاری، شیلنگ باغبانی و کیسه کاشت نهال.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "سدید پلیمر",
+  url: SITE_URL,
+  logo: `${SITE_URL}/favicon.png`,
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+98-9372296015", 
+    contactType: "sales",
+    areaServed: "IR",
+    availableLanguage: "Persian",
+  },
 };
 
 type RootLayoutProps = Readonly<{
@@ -79,6 +127,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
       dir="rtl"
       className={cn("scroll-smooth", vazir.variable)}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body className="flex min-h-dvh w-full flex-col font-sans bg-background text-foreground antialiased selection:bg-cyan-500/20 selection:text-cyan-300">
         <SmoothScroll>
           <Navbar />
@@ -89,7 +143,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </SmoothScroll>
         <GoogleAnalytics gaId="G-XNX5LVRK27" />
       </body>
-
     </html>
   );
 }
