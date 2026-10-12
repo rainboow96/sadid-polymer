@@ -5,7 +5,7 @@ import { company } from "../data/content";
 const LAT = 37.47291956346806;
 const LNG = 57.32733223436204;
 
-const NESHAN_URL = `https://nshn.ir/?lat=${LAT}&lng=${LNG}`;
+const NESHAN_URL = `https://neshan.org/maps/@${LAT},${LNG},17z`;
 
 const BBOX = `${LNG - 0.006}%2C${LAT - 0.003}%2C${LNG + 0.006}%2C${LAT + 0.003}`;
 const OSM_EMBED_URL = `https://www.openstreetmap.org/export/embed.html?bbox=${BBOX}&layer=mapnik&marker=${LAT}%2C${LNG}`;
