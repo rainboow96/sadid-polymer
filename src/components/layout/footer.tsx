@@ -74,6 +74,10 @@ export default function Footer() {
     ["instagram", "telegram", "whatsapp"].includes(channel.id)
   );
 
+  const emailUser = "sadid.polymer";
+  const emailDomain = "gmail.com";
+  const secureEmail = `${emailUser}@${emailDomain}`;
+
   return (
     <footer
       id="footer"
@@ -174,11 +178,11 @@ export default function Footer() {
                 <li className="flex items-start gap-2.5">
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
                   <a
-                    href={emailChannel.href}
+                    href={`mailto:${secureEmail}`}
                     dir="ltr"
                     className="transition-colors hover:text-white"
                   >
-                    {emailChannel.value}
+                    {secureEmail}
                   </a>
                 </li>
               )}
