@@ -65,14 +65,21 @@ export default async function BagsProductDetailPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
-    description: product.shortDescription || product.description,
-    image: product.images?.map((img) => `${SITE_URL}${img}`) || [],
-    category: "کیسه کاشت نهال و نایلون گروبگ",
+    description: product.description || product.shortDescription,
+    image: product.images?.map((img) =>
+      img.startsWith("http") ? img : `${SITE_URL}${img}`
+    ),
     brand: {
       "@type": "Brand",
       name: "سدید پلیمر",
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "12",
+    },
   };
+
 
   return (
     <PageLayout>

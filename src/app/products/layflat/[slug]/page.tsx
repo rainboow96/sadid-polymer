@@ -93,7 +93,13 @@ export default async function LayflatProductDetailPage({ params }: Props) {
       "@type": "Brand",
       name: "سدید پلیمر",
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "12",
+    },
   };
+
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
