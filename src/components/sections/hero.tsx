@@ -30,12 +30,12 @@ const STATS_DATA: readonly StatItem[] = [
     label: "صرفه‌جویی در آب",
     icon: Droplets,
   },
-{
-  id: "sizes",
-  value: `+ ${toPersianDigits("8")}`,
-  label: "تنوع سایز و کاربری",
-  icon: ShieldCheck, 
-},
+  {
+    id: "sizes",
+    value: `+ ${toPersianDigits("8")}`,
+    label: "تنوع سایز و کاربری",
+    icon: ShieldCheck, 
+  },
 ] as const;
 
 const SMOOTH_EASE = [0.16, 1, 0.3, 1] as const;
@@ -71,9 +71,9 @@ export default function Hero() {
               </FadeIn>
 
               <FadeIn delay={0.3}>
-                <p className="mt-3 max-w-lg text-xs leading-relaxed text-slate-300/90 sm:mt-4 sm:text-sm md:text-base">
-                  سدید پلیمر توزیع‌کننده تخصصی لوله‌های لی‌فلت آبیاری و
-                  کیسه‌های کاشت نهال با مقاومت صنعتی، انعطاف‌پذیری بی‌نظیر و دوامی
+                <p className="mt-3 max-w-lg text-xs leading-relaxed text-slate-300/90 sm:mt-4 sm:text-sm md:text-base [&>strong]:font-bold [&>strong]:text-white">
+                  سدید پلیمر توزیع‌کننده تخصصی <strong>لوله‌های لی‌فلت آبیاری</strong> و{" "}
+                  <strong>کیسه‌های کاشت نهال</strong> با مقاومت صنعتی، انعطاف‌پذیری بی‌نظیر و دوامی
                   که برای شرایط سخت کشاورزی ایران طراحی شده است.
                 </p>
               </FadeIn>
@@ -136,17 +136,16 @@ export default function Hero() {
                 transition={smoothTransition(0, 1.1)}
                 className="relative w-full"
               >
-<Image
-  src="/hero1.webp"
-  alt="لوله لی فلت آبیاری سدید پلیمر"
-  width={600}
-  height={600}
-  priority
-  quality={85}
-  sizes="(max-width: 640px) 280px, (max-width: 1024px) 450px, 600px"
-  className="h-auto w-full object-contain drop-shadow-[0_20px_50px_rgba(0,180,255,0.18)]"
-/>
-
+                <Image
+                  src="/hero1.webp"
+                  alt="لوله لی فلت آبیاری سدید پلیمر"
+                  width={600}
+                  height={600}
+                  priority
+                  quality={85}
+                  sizes="(max-width: 640px) 280px, (max-width: 1024px) 450px, 600px"
+                  className="h-auto w-full object-contain drop-shadow-[0_20px_50px_rgba(0,180,255,0.18)]"
+                />
               </motion.div>
 
               <motion.div

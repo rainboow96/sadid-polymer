@@ -7,25 +7,23 @@ const features = [
   {
     icon: Droplets,
     title: "صرفه‌جویی 40% در آب",
-    desc: "سطح داخلی صیقلی لی‌فلت، افت فشار را به حداقل می‌رساند و آب را بدون هدررفت تا انتهای زمین می‌رساند.",
+    desc: "سطح داخلی صیقلی <strong>لوله لی‌فلت</strong>، افت فشار را به حداقل می‌رساند و آب را بدون هدررفت تا انتهای زمین می‌رساند.",
   },
   {
     icon: Feather,
     title: "سبک و منعطف",
-    desc: "شروع وزن از تنها ۹ کیلوگرم در هر رول ۱۰۰ متری؛ حمل، پهن‌کردن و جمع‌آوری فوق‌سریع در زمین کشاورزی حتی توسط یک نفر.",
+    desc: "شروع وزن از تنها ۹ کیلوگرم در هر رول ۱۰۰ متری؛ <strong>حمل و جمع‌آوری فوق‌سریع</strong> در زمین کشاورزی حتی توسط یک نفر.",
   },
   {
     icon: Sun,
     title: "مقاوم در برابر UV",
-    desc: "افزودن آنتی‌یووی، لوله و کیسه نهال را در برابر آفتاب مستقیم تا 2 سال بیمه می‌کند.",
+    desc: "افزودن آنتی‌یووی، <strong>لوله و کیسه نهال</strong> را در برابر آفتاب مستقیم تا 2 سال بیمه می‌کند.",
   },
-{
-  icon: Layers,
-  title: "کاربری کشاورزی",
-  desc: "مورد استفاده در انواع سیستم‌های آبیاری جهت انتقال آب و اتصال خطوط نوار تیپ.",
-}
-
-
+  {
+    icon: Layers,
+    title: "کاربری کشاورزی",
+    desc: "مورد استفاده در انواع <strong>سیستم‌های آبیاری</strong> جهت انتقال آب و اتصال خطوط نوار تیپ.",
+  },
 ];
 
 export default function Features() {
@@ -54,9 +52,12 @@ export default function Features() {
                   {toPersianDigits(f.title)}
                 </h3>
 
-                <p className="mt-2 text-sm leading-7 text-slate-400">
-                  {toPersianDigits(f.desc)}
-                </p>
+                <p
+                  className="mt-2 text-sm leading-7 text-slate-400 [&>strong]:font-bold [&>strong]:text-slate-200"
+                  dangerouslySetInnerHTML={{
+                    __html: toPersianDigits(f.desc),
+                  }}
+                />
               </StatCard>
             </FadeIn>
           ))}

@@ -73,7 +73,6 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
 
   if (!article) notFound();
 
-  // Structured Data (JSON-LD) for Google
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -104,7 +103,6 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
 
   return (
     <PageLayout>
-      {/* Schema Injection */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

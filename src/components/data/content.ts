@@ -143,9 +143,10 @@ export const company = {
       id: "email",
       title: "ایمیل",
       value: "sadid.polymer@gmail.com",
-      href: "sadid.polymer@gmail.com",
+      href: "mailto:sadid.polymer@gmail.com",
       ltr: true,
-    },
+    }
+
   ] as ContactChannel[],
   copyright: "© تمامی حقوق مادی و معنوی برای سدید پلیمر محفوظ است.",
 } as const;
