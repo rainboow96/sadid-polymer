@@ -24,12 +24,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = products.find((p) => p.slug === slug);
-  if (!product) return { title: "محصول یافت نشد | سدید پلیمر" };
-
-  // بهینه‌سازی دقیق طول عنوان زیر ۷۰ کاراکتر برای جلوگیری از برش در گوگل
-  const title = `${product.name} | قیمت و خرید لوله لی فلت`;
+  if (!product) return { title: "محصول یافت نشد" };
+  const title = `قیمت و خرید ${product.name}`;
   
-  // بهینه‌سازی دقیق طول توضیحات زیر ۱۵۵ کاراکتر
   const description = `${product.shortDescription} مشخصات فنی و استعلام قیمت لوله لی‌فلت سدید پلیمر مناسب آبیاری کشاورزی با کیفیت عالی.`;
 
   return {
