@@ -34,7 +34,7 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
             >
               <Image
                 src={galleryImages[selectedIndex]}
-                alt={`${title} - تصویر ${selectedIndex + 1}`}
+                alt={`${title} - تصویر اصلی شماره ${selectedIndex + 1}`}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -92,7 +92,7 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
               >
                 <Image
                   src={img}
-                  alt=""
+                  alt={`${title} - بندانگشتی ${idx + 1}`}
                   fill
                   sizes="80px"
                   className="object-cover"
