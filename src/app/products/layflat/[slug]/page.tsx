@@ -26,8 +26,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = products.find((p) => p.slug === slug);
   if (!product) return { title: "محصول یافت نشد | سدید پلیمر" };
 
-  const title = `${product.name} | قیمت و خرید لوله لی فلت | سدید پلیمر`;
-  const description = `${product.shortDescription} مشخصات فنی و استعلام قیمت انواع لوله لی فلت سدید پلیمر با کیفیت و مقاومت بالا مناسب آبیاری کشاورزی.`;
+  // بهینه‌سازی دقیق طول عنوان زیر ۷۰ کاراکتر برای جلوگیری از برش در گوگل
+  const title = `${product.name} | قیمت و خرید لوله لی فلت`;
+  
+  // بهینه‌سازی دقیق طول توضیحات زیر ۱۵۵ کاراکتر
+  const description = `${product.shortDescription} مشخصات فنی و استعلام قیمت لوله لی‌فلت سدید پلیمر مناسب آبیاری کشاورزی با کیفیت عالی.`;
 
   return {
     title,
@@ -37,9 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "لوله لی فلت",
       "خرید لوله لی فلت",
       "قیمت لوله لی فلت",
-      "شیلنگ لی فلت",
       "شیلنگ آبیاری",
-      "شلنگ آبیاری",
       "لوله تاشو آبیاری",
       "سدید پلیمر",
     ],
@@ -146,7 +147,6 @@ export default async function LayflatProductDetailPage({ params }: Props) {
       <Breadcrumb className="mb-4" items={breadcrumbItems} />
 
       <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-10">
-        {/* ستون گالری محصول: در دسکتاپ کوچکتر و جمع‌وجورتر شده تا مینی‌تصاویر بلافاصله دیده شوند */}
         <div className="w-full lg:col-span-5 lg:sticky lg:top-24">
           <div className="mx-auto w-full max-w-md lg:max-w-none">
             <ProductGallery
@@ -156,7 +156,6 @@ export default async function LayflatProductDetailPage({ params }: Props) {
           </div>
         </div>
 
-        {/* ستون توضیحات و مشخصات محصول */}
         <div className="space-y-6 lg:col-span-7">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold text-gradient sm:text-3xl">
