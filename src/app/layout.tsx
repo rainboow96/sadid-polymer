@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: "سدید پلیمر | پخش تخصصی لوله‌های لی‌فلت، شیلنگ باغبانی و کیسه نهال",
+    default: "سدید پلیمر | پخش تخصصی لوله‌های لی‌فلت، شیلنگ باغبانی و کیسه کاشت نهال",
     template: "%s | سدید پلیمر",
   },
   description:
