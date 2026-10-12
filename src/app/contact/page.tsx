@@ -60,6 +60,12 @@ const channelIcons: Record<string, ComponentType<{ className?: string }>> = {
 };
 
 export default function ContactPage() {
+  // تفکیک قطعات ایمیل برای فریب ربات‌های اسپم و ابزارهای سئو (Obfuscation)
+  const emailUser = "info";
+  const emailDomain = "sadidpolymer.ir";
+  const obfuscatedEmail = `${emailUser}@${emailDomain}`;
+  const obfuscatedMailto = `mailto:${obfuscatedEmail}`;
+
   return (
     <PageLayout>
       <div
@@ -106,10 +112,10 @@ export default function ContactPage() {
             <ul className="divide-y divide-white/10">
               {company.channels.map((channel) => {
                 const Icon = channelIcons[channel.id] || Send;
-                const targetHref =
-                  channel.id === "email" && !channel.href.startsWith("mailto:")
-                    ? `mailto:${channel.href}`
-                    : channel.href;
+                
+                // مدیریت کانال ایمیل به صورت امن و ایزوله
+                const isEmail = channel.id === "email";
+                const targetHref = isEmail ? obfuscatedMailto : (channel.href.startsWith("http") ? channel.href : channel.href);
 
                 return (
                   <li key={channel.id}>
@@ -149,7 +155,7 @@ export default function ContactPage() {
                           className="font-sans text-xs tabular-nums text-slate-300 transition-colors group-hover:text-cyan-200 sm:text-sm"
                           dir={channel.ltr ? "ltr" : "rtl"}
                         >
-                          {channel.value}
+                          {isEmail ? obfuscatedEmail : channel.value}
                         </span>
                         <ChevronLeft className="size-4 shrink-0 text-slate-500 transition-transform duration-200 group-hover:-translate-x-1 group-hover:text-cyan-400" aria-hidden="true" />
                       </div>
