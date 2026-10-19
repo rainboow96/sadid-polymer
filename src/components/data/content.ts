@@ -135,7 +135,7 @@ export const company = {
     {
       id: "instagram",
       title: "اینستاگرام",
-      value: "@sadidpolymer",
+      value: "@sadid.polymer",
       href: "https://instagram.com/sadid.polymer",
       ltr: true,
     },
