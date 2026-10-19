@@ -121,16 +121,16 @@ export const company = {
     {
       id: "telegram",
       title: "تلگرام",
-      value: "سدید پلیمر در تلگرام",
-      href: "https://t.me/sadidpolymer",
-      ltr: false,
+      value: "ارتباط با ما در تلگرام",
+      href: "https://t.me/+989372296015",
+      ltr: true,
     },
     {
       id: "rubika",
       title: "روبیکا",
       value: "سدید پلیمر در روبیکا",
-      href: "https://rubika.ir/sadidpolymer",
-      ltr: false,
+      href: "https://rubika.ir/989372296015",
+      ltr: true,
     },
     {
       id: "instagram",
