@@ -126,10 +126,10 @@ export const company = {
       ltr: true,
     },
     {
-      id: "rubika",
-      title: "روبیکا",
-      value: "سدید پلیمر در روبیکا",
-      href: "https://rubika.ir/989372296015",
+      id: 'rubika',
+      title: 'روبیکا',
+      value: 'سدید پلیمر در روبیکا',
+      href: 'https://rubika.ir/Bahram1228ff',
       ltr: true,
     },
     {
