@@ -24,10 +24,12 @@ import Reveal from "@/components/ui/reveal";
 import Breadcrumb from "@/components/ui/breadcrumb";
 import PageLayout from "@/components/layout/PageLayout";
 
+const SITE_URL = "https://sadidpolymer.ir";
+
 export const metadata: Metadata = {
   title: `تماس با ما و استعلام قیمت | ${company.name}`,
   description: company.description,
-  alternates: { canonical: "/contact" },
+  alternates: { canonical: `${SITE_URL}/contact` },
 };
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -65,8 +67,51 @@ export default function ContactPage() {
   const obfuscatedEmail = `${emailUser}@${emailDomain}`;
   const obfuscatedMailto = `mailto:${obfuscatedEmail}`;
 
+  // اسکیمای اختصاصی ContactPage و BreadcrumbList
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "@id": `${SITE_URL}/contact#webpage`,
+        url: `${SITE_URL}/contact`,
+        name: `تماس با ما | ${company.name}`,
+        description: company.description,
+        inLanguage: "fa-IR",
+        about: {
+          "@type": "Organization",
+          name: company.name,
+          url: SITE_URL,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/contact#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "صفحه اصلی",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "تماس با ما",
+            item: `${SITE_URL}/contact`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <PageLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
+
       <div
         className="pointer-events-none absolute right-0 top-0 h-96 w-full bg-[radial-gradient(ellipse_60%_50%_at_80%_-10%,rgba(6,182,212,0.18),transparent_70%)]"
         aria-hidden="true"

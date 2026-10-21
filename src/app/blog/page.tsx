@@ -9,6 +9,8 @@ import { hydrofixGuideContent } from "@/components/data/content/hydrofix-guide";
 import { layflatPunchingGuideContent } from "@/components/data/content/layflat-punching";
 import { seedlingBagGuideContent } from "@/components/data/content/seedling-bag-guide";
 
+const SITE_URL = "https://sadidpolymer.ir";
+
 const allArticles = [
   hydrofixGuideContent,
   layflatPunchingGuideContent,
@@ -19,7 +21,18 @@ export const metadata: Metadata = {
   title: "مقالات و پایگاه دانش فنی | سدید پلیمر",
   description:
     "مقالات تخصصی و راهنمای فنی لوله‌های لی‌فلت و مهندسی پلیمر — سدید پلیمر.",
-  alternates: { canonical: "/blog" },
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
+  openGraph: {
+    title: "مقالات و پایگاه دانش فنی | سدید پلیمر",
+    description:
+      "مقالات تخصصی و راهنمای فنی لوله‌های لی‌فلت و مهندسی پلیمر — سدید پلیمر.",
+    url: `${SITE_URL}/blog`,
+    siteName: "سدید پلیمر",
+    locale: "fa_IR",
+    type: "website",
+  },
 };
 
 export default function BlogPage() {
@@ -28,8 +41,53 @@ export default function BlogPage() {
     { label: "وبلاگ" },
   ];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "صفحه اصلی",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "وبلاگ",
+            item: `${SITE_URL}/blog`,
+          },
+        ],
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${SITE_URL}/blog`,
+        url: `${SITE_URL}/blog`,
+        name: "مقالات و پایگاه دانش فنی | سدید پلیمر",
+        description:
+          "مقالات تخصصی و راهنمای فنی لوله‌های لی‌فلت و مهندسی پلیمر — سدید پلیمر.",
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: allArticles.map((article, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: article.title,
+            url: `${SITE_URL}/blog/${article.slug}`,
+          })),
+        },
+      },
+    ],
+  };
+
   return (
     <PageLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <div className="flex justify-center">
         <Breadcrumb className="mb-3 sm:mb-4" items={breadcrumbItems} />
       </div>
@@ -53,7 +111,6 @@ export default function BlogPage() {
             return (
               <Reveal key={article.slug} delay={index * 0.1}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-900/50 backdrop-blur-md transition-all duration-300 transform-gpu hover:-translate-y-1.5 hover:border-cyan-400/40 hover:bg-slate-900/80 hover:shadow-[0_12px_25px_-8px_rgba(6,182,212,0.25)]">
-                  
                   <Link
                     href={articleUrl}
                     tabIndex={-1}
@@ -77,9 +134,7 @@ export default function BlogPage() {
                   <div className="flex flex-1 flex-col p-6 text-right">
                     <div className="flex-1 space-y-2.5">
                       <h2 className="line-clamp-2 text-sm font-extrabold leading-7 text-white transition-colors group-hover:text-cyan-300 sm:text-base">
-                        <Link href={articleUrl}>
-                          {article.title}
-                        </Link>
+                        <Link href={articleUrl}>{article.title}</Link>
                       </h2>
                       <p className="line-clamp-3 text-xs leading-6 text-slate-400">
                         {article.heroExcerpt}

@@ -104,6 +104,8 @@ const organizationSchema = {
   name: "سدید پلیمر",
   url: SITE_URL,
   logo: `${SITE_URL}/favicon.png`,
+  description:
+    "مرکز پخش و توزیع تخصصی لوله‌های لی‌فلت آبیاری، شیلنگ‌های باغبانی و کیسه کاشت نهال.",
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+98-9372296015", 

@@ -37,17 +37,18 @@ export async function generateMetadata({
     ? `${SITE_URL}${article.image}`
     : `${SITE_URL}/images/default-blog.webp`;
 
+  const dynamicKeywords = [
+    article.title,
+    "سدید پلیمر",
+    "تجهیزات آبیاری و کشاورزی",
+    article.slug.includes("seedling") ? "کیسه کاشت نهال" : "لوله لی فلت",
+    article.slug.includes("seedling") ? "پلی بگ کشاورزی" : "لوله تاشو کشاورزی",
+  ];
+
   return {
     title: `${article.title} | سدید پلیمر`,
     description: article.heroExcerpt,
-    keywords: [
-      article.title,
-      "لوله لی فلت",
-      "لوله تاشو کشاورزی",
-      "شلنگ ابیاری",
-      "سدید پلیمر",
-      "تجهیزات آبیاری",
-    ],
+    keywords: dynamicKeywords,
     alternates: { canonical: canonicalUrl },
     openGraph: {
       title: `${article.title} | سدید پلیمر`,
@@ -68,6 +69,7 @@ export async function generateMetadata({
     },
   };
 }
+
 
 export default async function ArticleDetailPage({ params }: ArticlePageProps) {
   const { slug } = await params;
