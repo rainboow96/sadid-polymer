@@ -73,11 +73,6 @@ export default async function BagsProductDetailPage({ params }: Props) {
       "@type": "Brand",
       name: "سدید پلیمر",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "12",
-    },
   };
 
 

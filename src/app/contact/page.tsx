@@ -60,7 +60,6 @@ const channelIcons: Record<string, ComponentType<{ className?: string }>> = {
 };
 
 export default function ContactPage() {
-  // تفکیک قطعات ایمیل برای فریب ربات‌های اسپم و ابزارهای سئو (Obfuscation)
   const emailUser = "info";
   const emailDomain = "sadidpolymer.ir";
   const obfuscatedEmail = `${emailUser}@${emailDomain}`;
@@ -113,7 +112,6 @@ export default function ContactPage() {
               {company.channels.map((channel) => {
                 const Icon = channelIcons[channel.id] || Send;
                 
-                // مدیریت کانال ایمیل به صورت امن و ایزوله
                 const isEmail = channel.id === "email";
                 const targetHref = isEmail ? obfuscatedMailto : (channel.href.startsWith("http") ? channel.href : channel.href);
 
