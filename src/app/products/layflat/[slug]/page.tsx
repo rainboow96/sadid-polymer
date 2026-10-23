@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "محصول یافت نشد" };
   const title = `قیمت و خرید ${product.name}`;
   
-  const description = `${product.shortDescription} مشخصات فنی و استعلام قیمت لوله لی‌فلت سدید پلیمر مناسب آبیاری کشاورزی با کیفیت عالی.`;
+  const description = `${product.shortDescription} مشخصات فنی و استعلام قیمت لوله لی‌فلت و لیفلت سدید پلیمر مناسب آبیاری کشاورزی با کیفیت عالی.`;
 
   return {
     title,
@@ -35,8 +35,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: [
       product.name,
       "لوله لی فلت",
+      "لوله لیفلت",
+      "لوله لیفت",
+      `خرید ${product.name}`,
       "خرید لوله لی فلت",
       "قیمت لوله لی فلت",
+      "قیمت لوله لیفلت",
       "شیلنگ آبیاری",
       "لوله تاشو آبیاری",
       "سدید پلیمر",
@@ -94,7 +98,6 @@ export default async function LayflatProductDetailPage({ params }: Props) {
       name: "سدید پلیمر",
     },
   };
-
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",

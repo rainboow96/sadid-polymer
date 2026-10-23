@@ -61,19 +61,25 @@ export default async function BagsProductDetailPage({ params }: Props) {
     { label: product.name },
   ];
 
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.description || product.shortDescription,
-    image: product.images?.map((img) =>
-      img.startsWith("http") ? img : `${SITE_URL}${img}`
-    ),
-    brand: {
-      "@type": "Brand",
-      name: "سدید پلیمر",
-    },
-  };
+   const productSchema = {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     name: product.name,
+     description: product.description || product.shortDescription,
+     image: product.images?.map((img) =>
+       img.startsWith("http") ? img : `${SITE_URL}${img}`
+     ),
+     brand: {
+       "@type": "Brand",
+       name: "سدید پلیمر",
+     },
+     offers: {
+       "@type": "AggregateOffer",
+       priceCurrency: "IRR",
+       availability: "https://schema.org/InStock",
+       price: "تماس بگیرید",
+     },
+   };
 
 
   return (
